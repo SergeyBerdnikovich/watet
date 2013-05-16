@@ -10,6 +10,7 @@ gem 'sqlite3'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-google'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

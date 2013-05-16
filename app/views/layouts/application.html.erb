@@ -8,6 +8,7 @@
 </head>
 <body>
 <div>
+  <%= link_to 'Sign with social', authentications_path %>
   <% if current_user %>
     <%= link_to 'SignOUT', destroy_user_session_path, :method => :delete %>
   <% else %>

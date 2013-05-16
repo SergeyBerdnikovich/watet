@@ -8,6 +8,7 @@
   border-radius: 10px;
   float: left;
   padding: 5px;
+  margin: 5px;
 }
 .clear {
   clear: both;
@@ -35,6 +36,9 @@
 .soc_provider {
   float: left;
   text-align: center;
+}
+.soc_provider a {
+  text-decoration: none;
 }
 .soc_provider a:hover {
   background: none;
