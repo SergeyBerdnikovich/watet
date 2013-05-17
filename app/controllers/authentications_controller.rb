@@ -10,6 +10,18 @@ class AuthenticationsController < ApplicationController
   def create
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
+    name = omniauth['info']['name']
+    email = omniauth['info']['email']
+    session[:soc_name] = name
+    session[:soc_email] = email
+    # if omniauth['provider'] == 'facebook'
+    #   token = omniauth['credentials']['token']
+    #   user = FbGraph::User.me(token).fetch
+    #   name = user.name #omniauth['info']['name']
+    #   email = user.email #omniauth['info']['email']
+    #   friends = user.friends  #friend.name friend.id
+    # end
+
     if authentication
       sign_in_and_redirect(:user, authentication.user)
       flash[:notice] = 'Signed in sucessfull'
