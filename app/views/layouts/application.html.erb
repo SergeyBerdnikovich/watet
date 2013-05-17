@@ -7,17 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div>
-  <%= link_to 'Sign with social', authentications_path %>
-  <% if current_user %>
-    <%= link_to 'SignOUT', destroy_user_session_path, :method => :delete %>
-    <p>Hi <%= session[:soc_name] %>(<%= session[:soc_email] %>)</p>
-  <% else %>
-    <%= link_to 'SignIN', new_user_session_path %>
-    <%= link_to 'SignUP', new_user_registration_path %>
-  <% end %>
-</div>
-<%= yield %>
-
+  <div id='container'>
+    <div id='header'>
+      <%= render 'layouts/header' %>
+    </div>
+    <div id='content'>
+      <%= yield %>
+    </div>
+    <div id='footer'>
+      <%= render 'layouts/footer' %>
+    </div>
+  </div>
 </body>
 </html>

@@ -11,3 +11,144 @@
  *= require_self
  *= require_tree .
  */
+
+body {
+  background-color: #FFFF9B;
+}
+#container {
+  width: 800px;
+  margin: 10px auto;
+}
+#avatar {
+  float: right;
+}
+#ddmenu {
+  float: right;
+}
+#logo {
+  max-width: 200px;
+  float: left;
+}
+.clear {
+  clear: both;
+}
+hr {
+  border: 1px double #C3C3C3;
+  height: 5px;
+  border-left: none;
+  border-right: none;
+}
+#footer {
+
+}
+#user {
+  background-color: #DFDFA2;
+  padding: 5px;
+  border-radius: 8px;
+  margin: 0;
+}
+span#hr hr {
+  border: 1px solid #C3C3C3;
+  height: 1px;
+}
+#ddmenu #btn {
+  padding: 2px 5px;
+  background-color: #EEEEC1;
+  border-radius: 50px;
+}
+#ddmenu {
+  list-style: none;
+}
+#ddmenu li {
+  float: left;
+  padding: 0 0 10px 0;
+  position: relative;
+}
+#ddmenu li:hover > a {
+  color: black;
+}
+#ddmenu li:hover > ul {
+  display: block;
+}
+#ddmenu ul {
+  width: 150px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+  position: absolute;
+  top: 28px;
+  left: 0;
+  z-index: 99999;
+  background: #FFFFFF;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+#ddmenu a:visited {
+  color: black;
+}
+#ddmenu a {
+  text-decoration: none;
+}
+#ddmenu ul li {
+  float: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+#ddmenu ul li:last-child {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+#ddmenu ul a {
+  padding: 10px;
+  height: auto;
+  line-height: 1;
+  display: block;
+  white-space: nowrap;
+  float: none;
+  text-transform: none;
+  text-decoration: none;
+}
+#ddmenu hr {
+  margin: 0px auto;
+  width: 90%;
+
+}
+#ddmenu ul a:hover {
+  background: #DFDFA2;
+}
+
+#ddmenu ul li:first-child a {
+  -moz-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+}
+
+li#first a:after {
+  content: '';
+  position: absolute;
+  left: 30px;
+  top: -6px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 8px solid #FFFFFF;
+}
+
+#ddmenu ul li:last-child a {
+  -moz-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
+}
+
+#ddmenu:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}

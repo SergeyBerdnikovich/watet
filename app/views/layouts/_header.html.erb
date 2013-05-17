@@ -1,0 +1,24 @@
+<div id='logo'>Logo</div>
+
+<ul id='ddmenu'>
+  <% if current_user %>
+    <li>
+      <a href="#" id='user'>Hi, <%= session[:soc_name] %>! <span id ='btn'>></span></a>
+      <ul>
+        <li id='first'><a href="#">Contacts</a></li>
+        <li><a href="#">Applications</a></li>
+        <li><a href="#">Menu</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Settings</a></li>
+        <span id='hr'><hr /><span>
+        <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+      </ul>
+    </li>
+  <% else %>
+    <%= link_to 'SignIN', new_user_session_path, :id => 'user' %>
+  <% end %>
+  <%= link_to 'Sign with social', authentications_path %>
+</ul>
+<div id='avatar'>ava</div>
+<div class='clear'></div>
+<hr />
