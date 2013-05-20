@@ -7,5 +7,10 @@
   <div id='welcome_content'>
     <%= link_to 'Sign with social', authentications_path %>
   </div>
+  <div id='friends'>
+    <% @friends.each do |friend| %>
+      <%= friend.name %>
+    <% end %>
+  </div>
 </div>
 <div style='clear:both'></div>

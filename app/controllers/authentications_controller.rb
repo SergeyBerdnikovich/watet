@@ -10,22 +10,19 @@ class AuthenticationsController < ApplicationController
   def create
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
-    name = omniauth['info']['name']
-    #first_name = omniauth['info']['first_name']
-    raise omniauth['info'].to_s
-    email = omniauth['info']['email']
+    session[:soc_email] = omniauth['info']['email']
     token = omniauth['credentials']['token']
+    session[:soc_token] = token
 
-    omniauth['provider'] == 'facebook' ? session[:soc_ava] = FbGraph::User.me(token).fetch.picture : session[:soc_ava] = omniauth['extra']['raw_info']['picture']
-    session[:soc_name] = first_name
-    session[:soc_email] = email
-    # if omniauth['provider'] == 'facebook'
-    #   token = omniauth['credentials']['token']
-    #   user = FbGraph::User.me(token).fetch
-    #   name = user.name #omniauth['info']['name']
-    #   email = user.email #omniauth['info']['email']
-    #   friends = user.friends  #friend.name friend.id
-    # end
+    if omniauth['provider'] == 'google_oauth2'
+      session[:soc_name] = omniauth['extra']['raw_info']['given_name']
+      session[:soc_ava] = omniauth['extra']['raw_info']['picture']
+    elsif omniauth['provider'] == 'facebook'
+      fb_user = FbGraph::User.me(token).fetch
+      session[:soc_name] = omniauth['info']['first_name']
+      session[:soc_ava] = FbGraph::User.me(token).fetch.picture
+      #friends = fb_user.friends  #friend.name friend.id
+    end
 
     if authentication
       sign_in_and_redirect(:user, authentication.user)
