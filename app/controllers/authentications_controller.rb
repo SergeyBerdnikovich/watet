@@ -11,8 +11,13 @@ class AuthenticationsController < ApplicationController
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     name = omniauth['info']['name']
+    #first_name = omniauth['info']['first_name']
+    raise omniauth['info'].to_s
     email = omniauth['info']['email']
-    session[:soc_name] = name
+    token = omniauth['credentials']['token']
+
+    omniauth['provider'] == 'facebook' ? session[:soc_ava] = FbGraph::User.me(token).fetch.picture : session[:soc_ava] = omniauth['extra']['raw_info']['picture']
+    session[:soc_name] = first_name
     session[:soc_email] = email
     # if omniauth['provider'] == 'facebook'
     #   token = omniauth['credentials']['token']

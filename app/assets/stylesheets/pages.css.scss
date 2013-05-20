@@ -1,3 +1,21 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#banners {
+  float: left;
+  margin: 20px 20px 20px 0px;
+}
+#welcome_content {
+  padding: 10px;
+  margin-top: 20px;
+  float: left;
+}
+#apple {
+  height: 208px;
+  width: 135px;
+  background-image: url('/assets/maket/apple.png');
+}
+#apple:hover {
+  background: url('/assets/maket/apple_color.png');
+}

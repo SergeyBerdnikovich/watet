@@ -3,22 +3,22 @@
 <ul id='ddmenu'>
   <% if current_user %>
     <li>
-      <a href="#" id='user'>Hi, <%= session[:soc_name] %>! <span id ='btn'>></span></a>
+      <a href="#" id='user'>Hi, <%= session[:soc_name] %>! <span id ='btn'><%= image_tag '/assets/maket/ddmenu_arrow.png' %></span></a>
       <ul>
-        <li id='first'><a href="#">Contacts</a></li>
-        <li><a href="#">Applications</a></li>
-        <li><a href="#">Menu</a></li>
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Settings</a></li>
+        <li id='first'><a href="#"><%= image_tag '/assets/maket/contacts.png' %> Contacts</a></li>
+        <li><a href="#"><%= image_tag '/assets/maket/applications.png' %> Applications</a></li>
+        <li><a href="#"><%= image_tag '/assets/maket/menu.png' %> Menu</a></li>
+        <li><a href="#"><%= image_tag '/assets/maket/profile.png' %> Profile</a></li>
+        <li><a href="#"><%= image_tag '/assets/maket/settings.png' %> Settings</a></li>
         <span id='hr'><hr /><span>
-        <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+        <li><a href="<%= destroy_user_session_path %>"><%= image_tag '/assets/maket/sign.png' %> Sign out</a></li>
       </ul>
     </li>
   <% else %>
     <%= link_to 'SignIN', new_user_session_path, :id => 'user' %>
   <% end %>
-  <%= link_to 'Sign with social', authentications_path %>
+
 </ul>
-<div id='avatar'>ava</div>
+<div id='avatar'><%= image_tag session[:soc_ava] %></div>
 <div class='clear'></div>
 <hr />

@@ -1,3 +1,11 @@
-<h1>Pages#welcome</h1>
-<p>Find me in app/views/pages/welcome.html.erb</p>
-
+<div>
+  <div id='banners'>
+    <p id='nike'><%= image_tag '/assets/maket/nike.png' %></p>
+    <a href="#"><p id='apple'></p></a>
+    <p id='volkswagen'><%= image_tag '/assets/maket/volkswagen.png' %></p>
+  </div>
+  <div id='welcome_content'>
+    <%= link_to 'Sign with social', authentications_path %>
+  </div>
+</div>
+<div style='clear:both'></div>
