@@ -2,46 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#banners {
-  float: left;
-  margin: 20px 20px 20px 0px;
-}
-#welcome_content {
-  padding: 10px;
-  margin-top: 20px;
-  float: left;
-}
-#apple {
-  height: 208px;
-  width: 135px;
-  background-image: url('/assets/maket/apple.png');
-}
-#apple:hover {
-  background: url('/assets/maket/apple_color.png');
-}
-#friends {
-  margin-top: 20px;
-  float: right;
-}
 
-#friends p {
-  padding: 10px;
-  margin: 0;
-  border-radius: 10px;
-  font: 120% bold sans-serif;
-}
-#friends p:hover {
-  background-color: #DFDFA2;
-}
-#friends a {
-  text-decoration: none;
-}
-#friends a:visited {
-  color: black;
 
-.welcome_img{
-  width:800px;
-  height:auto;
+.welcome_img {
+  width: 800px;
+  height: auto;
 }
 
 .header{
@@ -49,6 +14,6 @@
 }
 
 .header_big{
-margin-left:19px;
-font-size:18px
+  margin-left:19px;
+  font-size:18px;
 }

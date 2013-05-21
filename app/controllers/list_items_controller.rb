@@ -8,26 +8,13 @@ class ListItemsController < ApplicationController
   end
 
   def index
-    
-     if current_user && session[:soc_token].presence
-      begin
-      fb_user = FbGraph::User.me(session[:soc_token]).fetch
-      @friends = fb_user.friends
-      rescue
-      end
-    end
-
-  if user_signed_in?
-   @list_items = ListItem.where("user_id = ?", current_user.id)
-   @list_item = ListItem.new
-  else
-      redirect_to pages_welcome_path()  and return false unless params[:id]
-      @list_items = ListItem.where("user_id = ?", params[:id])
-
-  end
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @list_items }
+    if user_signed_in?
+      authentication = current_user.authentications.where(:provider => 'facebook')
+      @friends = get_friends_for_(current_user)
+      @list_items = ListItem.where("user_id = ?", current_user.id)
+      @list_item = ListItem.new
+    else
+      redirect_to pages_welcome_path()
     end
   end
 
@@ -61,8 +48,7 @@ class ListItemsController < ApplicationController
   # POST /list_items
   # POST /list_items.json
   def create
-    @list_item = ListItem.new(params[:list_item])
-    @list_item.user_id = current_user.id
+    @list_item = current_user.list_items.build(params[:list_item])
 
     respond_to do |format|
       if @list_item.save
@@ -101,5 +87,17 @@ class ListItemsController < ApplicationController
       format.html { redirect_to list_items_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def get_friends_for_(current_user)
+    friends = []
+    current_user.authentications.each do |authentication|
+      authentication.friends.each do |friend|
+        friends << friend
+      end
+    end
+    friends
   end
 end

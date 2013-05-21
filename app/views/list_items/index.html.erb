@@ -1,44 +1,48 @@
 <%- model_class = ListItem -%>
-
-  <h4><%=  session[:soc_name]  %>'s list</h4>
-
-<%= render :partial => 'front_end_form' %>
-
-    <% @list_items.each do |list_item| %>
-    <div class='listitem'>
-    <table class="table" >
-  <tbody>
-      <tr>
-        <td><h5><%= list_item.title%></h5></td>
-        <td class='pull-right'>          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_list_item_path(list_item), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      list_item_path(list_item),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-</td>
-      </tr>
-      <tr>
-        <td>Some user</td>
-        <td class='pull-right'><%= l list_item.created_at, :format => :short %></td>
-      </tr>
-      <tr>
-        <td colspan=2><%= list_item.description %></td>
-      </tr>
-      <tr>
-          <td></td>
-      </tr>
-      </tbody>
-</table>
+<div id='banners'>
+  <p id='nike'><%= image_tag '/assets/maket/nike.png' %></p>
+  <a href="#"><p id='apple'></p></a>
+  <p id='volkswagen'><%= image_tag '/assets/maket/volkswagen.png' %></p>
 </div>
-    <% end %>
+<div id='content'>
+<h4><%=  session[:soc_name]  %>'s list</h4>
+  <%= render :partial => 'front_end_form' %>
 
-    <div class='friends_div'>
- <% if @friends %>
-    <% @friends.each do |friend| %>
-    <div>  <%= friend.name %> </div>
-    <% end %>
-    <% end %>
+  <% @list_items.each do |list_item| %>
+    <div class='listitem'>
+      <table class="table" >
+        <tbody>
+          <tr>
+            <td><h5><%= list_item.title%></h5></td>
+            <td class='pull-right'>
+              <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_list_item_path(list_item),
+                                                                           :class => 'btn btn-mini' %>
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy")), list_item_path(list_item),
+                                                                                 :method => :delete,
+                                                                                 :data => { :confirm => t('.confirm',
+                                                                                 :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                                                                                 :class => 'btn btn-mini btn-danger' %>
+            </td>
+          </tr>
+          <tr>
+            <td>Some user</td>
+            <td class='pull-right'><%= l list_item.created_at, :format => :short %></td>
+          </tr>
+          <tr>
+            <td colspan=2><%= list_item.description %></td>
+          </tr>
+          <tr>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  
+  <% end %>
+</div>
+<div id='friends'>
+  <% @friends.each do |friend| %>
+    <a href="#" id='<%= friend.id %>'><p><%= friend.name %></p></a>
+  <% end %>
+</div>
+<div class='clear'>
+

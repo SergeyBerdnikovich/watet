@@ -23,12 +23,15 @@ class AuthenticationsController < ApplicationController
       flash[:notice] = 'Authentication sucessfull'
       redirect_to authentications_path
     else
-      user = User.new(:email => omniauth['info']['email'])
-      user.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
-      user.email = omniauth['provider'] + ":" + user.email
-      user.save(:validate => false)
-      sign_in_and_redirect(:user, user)
-      flash[:notice] = 'Signed in sucessfull'
+      if User.find_by_email(omniauth['info']['email'])
+        redirect_to authentications_path, :notice => 'This email is already used by someone, try to go through another social network...'
+      else
+        user = User.new(:email => omniauth['info']['email'])
+        user.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+        user.save(:validate => false)
+        sign_in_and_redirect(:user, user)
+        flash[:notice] = 'Signed in sucessfull'
+      end
     end
   end
 
