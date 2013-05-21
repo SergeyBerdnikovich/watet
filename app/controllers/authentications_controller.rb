@@ -1,4 +1,7 @@
+require 'update_friends_job'
 class AuthenticationsController < ApplicationController
+  after_filter :set_friends, :only => [:create]
+
   # GET /authentications
   # GET /authentications.json
   def index
@@ -10,19 +13,7 @@ class AuthenticationsController < ApplicationController
   def create
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
-    session[:soc_email] = omniauth['info']['email']
-    token = omniauth['credentials']['token']
-    session[:soc_token] = token
-
-    if omniauth['provider'] == 'google_oauth2'
-      session[:soc_name] = omniauth['extra']['raw_info']['given_name']
-      session[:soc_ava] = omniauth['extra']['raw_info']['picture']
-    elsif omniauth['provider'] == 'facebook'
-      fb_user = FbGraph::User.me(token).fetch
-      session[:soc_name] = omniauth['info']['first_name']
-      session[:soc_ava] = FbGraph::User.me(token).fetch.picture
-      #friends = fb_user.friends  #friend.name friend.id
-    end
+    initial_session(omniauth)
 
     if authentication
       sign_in_and_redirect(:user, authentication.user)
@@ -32,7 +23,7 @@ class AuthenticationsController < ApplicationController
       flash[:notice] = 'Authentication sucessfull'
       redirect_to authentications_path
     else
-      user = User.new
+      user = User.new(:email => omniauth['info']['email'])
       user.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
       user.save(:validate => false)
       sign_in_and_redirect(:user, user)
@@ -49,6 +40,27 @@ class AuthenticationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to authentications_url }
       format.json { head :no_content }
+    end
+  end
+
+  private
+
+  def set_friends
+    Delayed::Job.enqueue(UpdateFriendsJob.new(current_user, session[:soc_token], session[:soc_uid])) if session[:soc_provider] == 'facebook'
+  end
+
+  def initial_session(omniauth)
+    session[:soc_email] = omniauth['info']['email']
+    session[:soc_token] = omniauth['credentials']['token']
+    session[:soc_provider] = omniauth['provider']
+    session[:soc_uid] = omniauth['uid']
+    if omniauth['provider'] == 'google_oauth2'
+      session[:soc_name] = omniauth['extra']['raw_info']['given_name']
+      session[:soc_ava] = omniauth['extra']['raw_info']['picture']
+    elsif omniauth['provider'] == 'facebook'
+      fb_user = FbGraph::User.me(omniauth['credentials']['token']).fetch
+      session[:soc_name] = omniauth['info']['first_name']
+      session[:soc_ava] = fb_user.picture
     end
   end
 end

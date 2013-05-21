@@ -23,3 +23,18 @@
   margin-top: 20px;
   float: right;
 }
+#friends p {
+  padding: 10px;
+  margin: 0;
+  border-radius: 10px;
+  font: 120% bold sans-serif;
+}
+#friends p:hover {
+  background-color: #DFDFA2;
+}
+#friends a {
+  text-decoration: none;
+}
+#friends a:visited {
+  color: black;
+}

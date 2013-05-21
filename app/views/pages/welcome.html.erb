@@ -5,11 +5,11 @@
     <p id='volkswagen'><%= image_tag '/assets/maket/volkswagen.png' %></p>
   </div>
   <div id='welcome_content'>
-    <%= link_to 'Sign with social', authentications_path %>
+123
   </div>
   <div id='friends'>
     <% @friends.each do |friend| %>
-      <%= friend.name %>
+      <a href="#" id='<%= friend.id %>'><p><%= friend.name %></p></a>
     <% end %>
   </div>
 </div>

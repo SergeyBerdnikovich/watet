@@ -1,8 +1,15 @@
 class PagesController < ApplicationController
   def welcome
-    if current_user && session[:soc_token].presence
-      fb_user = FbGraph::User.me(session[:soc_token]).fetch
-      @friends = fb_user.friends
+    if current_user
+      authentication = current_user.authentications.where(:provider => 'facebook')
+      @friends = []
+      current_user.authentications.each do |authentication|
+        authentication.friends.each do |friend|
+          @friends << friend
+        end
+      end
+      #@friends = Friend.where(:authentication_id => authentication.id)
     end
+    @friends ||= []
   end
 end

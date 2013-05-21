@@ -13,6 +13,8 @@ gem 'omniauth-facebook'
 gem 'omniauth-google'
 gem 'fb_graph'
 gem "omniauth-google-oauth2"
+gem 'delayed_job_active_record'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

@@ -15,10 +15,11 @@
       </ul>
     </li>
   <% else %>
-    <%= link_to 'SignIN', new_user_session_path, :id => 'user' %>
+    <%= link_to 'SignIN', authentications_path, :id => 'user' %>
+    <%#= link_to 'SignIN', new_user_session_path, :id => 'user' %>
   <% end %>
 
 </ul>
-<div id='avatar'><%= image_tag session[:soc_ava] %></div>
+<div id='avatar'><%= get_avatar %></div>
 <div class='clear'></div>
 <hr />
