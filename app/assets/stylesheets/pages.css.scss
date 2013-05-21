@@ -23,6 +23,7 @@
   margin-top: 20px;
   float: right;
 }
+
 #friends p {
   padding: 10px;
   margin: 0;
@@ -37,4 +38,17 @@
 }
 #friends a:visited {
   color: black;
+
+.welcome_img{
+  width:800px;
+  height:auto;
+}
+
+.header{
+  font-size:14px
+}
+
+.header_big{
+margin-left:19px;
+font-size:18px
 }

@@ -25,6 +25,7 @@ class AuthenticationsController < ApplicationController
     else
       user = User.new(:email => omniauth['info']['email'])
       user.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+      user.email = omniauth['provider'] + ":" + user.email
       user.save(:validate => false)
       sign_in_and_redirect(:user, user)
       flash[:notice] = 'Signed in sucessfull'

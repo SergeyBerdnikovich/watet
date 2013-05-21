@@ -45,6 +45,25 @@ ActiveRecord::Schema.define(:version => 20130521120717) do
     t.datetime "updated_at",        :null => false
   end
 
+  create_table "list_items", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "geloc"
+    t.integer  "priority"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "user_id"
+  end
+
+  create_table "static_pages", :force => true do |t|
+    t.string   "name"
+    t.string   "title"
+    t.text     "content"
+    t.string   "locale"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false

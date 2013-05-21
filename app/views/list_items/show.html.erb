@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @list_item.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @list_item.description %>
+</p>
+
+<p>
+  <b>Geloc:</b>
+  <%= @list_item.geloc %>
+</p>
+
+<p>
+  <b>Priority:</b>
+  <%= @list_item.priority %>
+</p>
+
+
+<%= link_to 'Edit', edit_list_item_path(@list_item) %> |
+<%= link_to 'Back', list_items_path %>
