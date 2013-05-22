@@ -9,7 +9,7 @@
         <li><a href="#"><%= image_tag '/assets/maket/applications.png' %> Applications</a></li>
         <li><a href="#"><%= image_tag '/assets/maket/menu.png' %> Menu</a></li>
         <li><a href="#"><%= image_tag '/assets/maket/profile.png' %> Profile</a></li>
-        <li><a href="#"><%= image_tag '/assets/maket/settings.png' %> Settings</a></li>
+        <li><a href="<%= authentications_path %>"><%= image_tag '/assets/maket/settings.png' %> Settings</a></li>
         <span id='hr'><hr /><span>
         <li><a href="<%= destroy_user_session_path %>"><%= image_tag '/assets/maket/sign.png' %> Sign out</a></li>
       </ul>

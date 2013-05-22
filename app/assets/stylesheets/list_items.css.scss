@@ -7,6 +7,7 @@
   float: right;
   height: 550px;
   overflow-y: scroll;
+  max-width: 280px;
 }
 
 #friends p {
@@ -29,6 +30,7 @@
   margin: 20px 20px 20px 0px;
 }
 #content {
+  min-width: 400px;
   padding: 10px;
   margin: 20px auto;
   float: left;
@@ -40,4 +42,10 @@
 }
 #apple:hover {
   background: url('/assets/maket/apple_color.png');
+}
+.listitem table {
+  max-width: 400px;
+}
+#email {
+  margin-left: 110px;
 }

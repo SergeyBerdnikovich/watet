@@ -1,20 +1,21 @@
 class ListItemsController < ApplicationController
   # GET /list_items
   # GET /list_items.json
-  before_filter :check_user, :except => [:show, :index]
-
-  def check_user
-    redirect_to pages_welcome_path() unless user_signed_in?
-  end
+  before_filter :check_user, :only => [:edit, :update, :destroy]
+  before_filter :check_current_user, :only => [:new, :create, :send_email_with_list_items_link]
 
   def index
-    if user_signed_in?
+    if params[:uid] && params[:provider]
+      @list_items = get_list_items(params[:provider], params[:uid])
+      @friends = get_friends_for_(current_user) if user_signed_in?
+      @friends ||= []
+    elsif user_signed_in?
       authentication = current_user.authentications.where(:provider => 'facebook')
       @friends = get_friends_for_(current_user)
-      @list_items = ListItem.where("user_id = ?", current_user.id)
+      @list_items = ListItem.where("user_id = ?", current_user.id).order("list_items.created_at DESC")
       @list_item = ListItem.new
     else
-      redirect_to pages_welcome_path()
+      redirect_to pages_welcome_path
     end
   end
 
@@ -89,6 +90,11 @@ class ListItemsController < ApplicationController
     end
   end
 
+  def send_email_with_list_items_link
+    Mailer.send_list_items_link(current_user, params[:email], session).deliver unless params[:email].blank?
+    redirect_to root_path, :notice => 'list items has been sent...'
+  end
+
   private
 
   def get_friends_for_(current_user)
@@ -99,5 +105,26 @@ class ListItemsController < ApplicationController
       end
     end
     friends
+  end
+
+  def get_list_items(provider, uid)
+    user_authentication = Authentication.find_by_provider_and_uid(provider, uid)
+    if user_authentication
+      list_items = user_authentication.user.try(:list_items)
+      list_items ? list_items.order("list_items.created_at DESC") : []
+    else
+      redirect_to root_path, :notice => 'User authentication not found...'
+    end
+  end
+
+  def check_user
+    list_item = ListItem.find(params[:id])
+    unless user_signed_in? && list_item.user.id == current_user.id
+      redirect_to pages_welcome_path
+    end
+  end
+
+  def check_current_user
+    redirect_to pages_welcome_path unless user_signed_in?
   end
 end
