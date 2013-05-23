@@ -5,15 +5,13 @@ class ListItemsController < ApplicationController
   before_filter :check_current_user, :only => [:new, :create, :send_email_with_list_items_link]
 
   def index
-    if params[:uid] && params[:provider]
-      @list_items = get_list_items(params[:provider], params[:uid])
-      @friends = get_friends_for_(current_user) if user_signed_in?
-      @friends ||= []
-    elsif user_signed_in?
+    if user_signed_in?
       authentication = current_user.authentications.where(:provider => 'facebook')
       @friends = get_friends_for_(current_user)
       @list_items = ListItem.where("user_id = ?", current_user.id).order("list_items.created_at DESC")
       @list_item = ListItem.new
+      @friends = get_friends_for_(current_user)
+      @friends ||= []
     else
       redirect_to pages_welcome_path
     end
@@ -22,11 +20,13 @@ class ListItemsController < ApplicationController
   # GET /list_items/1
   # GET /list_items/1.json
   def show
-    @list_item = ListItem.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @list_item }
+    user = User.find(params[:id])
+    if user
+      user.list_items.blank? ? @list_items = [] : @list_items = user.list_items.order("list_items.created_at DESC")
+      @friends = get_friends_for_(current_user) if user_signed_in?
+      @friends ||= []
+    else
+      redirect_to root_path, :notice => 'User not found...'
     end
   end
 
@@ -91,7 +91,7 @@ class ListItemsController < ApplicationController
   end
 
   def send_email_with_list_items_link
-    Mailer.send_list_items_link(current_user, params[:email], session).deliver unless params[:email].blank?
+    Mailer.send_list_items_link(current_user, params[:email]).deliver unless params[:email].blank?
     redirect_to root_path, :notice => 'list items has been sent...'
   end
 
@@ -105,16 +105,6 @@ class ListItemsController < ApplicationController
       end
     end
     friends
-  end
-
-  def get_list_items(provider, uid)
-    user_authentication = Authentication.find_by_provider_and_uid(provider, uid)
-    if user_authentication
-      list_items = user_authentication.user.try(:list_items)
-      list_items ? list_items.order("list_items.created_at DESC") : []
-    else
-      redirect_to root_path, :notice => 'User authentication not found...'
-    end
   end
 
   def check_user

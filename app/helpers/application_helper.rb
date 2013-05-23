@@ -1,6 +1,6 @@
 module ApplicationHelper
   def get_avatar
-    session[:soc_ava].blank? ? image_tag('/assets/maket/no_avatar.png') : image_tag(session[:soc_ava])
+    current_user ? image_tag(current_user.try(:profile).try(:avatar)) : image_tag('/assets/maket/no_avatar.png')
   end
 	def show_page(name)
 		page = StaticPage.find_by_name(name)

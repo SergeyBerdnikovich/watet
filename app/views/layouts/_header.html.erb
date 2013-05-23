@@ -3,7 +3,7 @@
 <ul id='ddmenu'>
   <% if current_user %>
     <li style='min-width:130px'>
-      <a href="#" style='margin-right:20px' id='user'>Hi, <%= session[:soc_name] %>! <span id ='btn'><%= image_tag '/assets/maket/ddmenu_arrow.png' %></span></a>
+      <a href="#" style='margin-right:20px' id='user'>Hi, <%= current_user.try(:profile).try(:fname) %>! <span id ='btn'><%= image_tag '/assets/maket/ddmenu_arrow.png' %></span></a>
       <ul>
         <li id='first'><a href="<%= link_to_page('conacts') %>"><%= image_tag '/assets/maket/contacts.png' %> Contacts</a></li>
         <li><a href="#"><%= image_tag '/assets/maket/applications.png' %> Applications</a></li>

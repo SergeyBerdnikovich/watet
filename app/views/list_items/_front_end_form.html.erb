@@ -1,5 +1,5 @@
 <%= form_for @list_item do |f| %>
-  <%= f.text_field 'title',  :placeholder => t(:whats_up) +  session[:soc_name]  + "?" %>
+  <%= f.text_field 'title',  :placeholder => t(:whats_up) + current_user.try(:profile).try(:fname) + "?" %>
   <%= f.submit "Add to list", :disable_with => "Please wait...", :class => "btn btn-primary", :style => "margin-bottom:10px" %><br>
   <%= f.text_area 'description',  :placeholder => t(:tell_us_more), :class => 'tellusmore'%>
 <% end %>

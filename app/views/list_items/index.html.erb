@@ -5,7 +5,7 @@
   <p id='volkswagen'><%= image_tag '/assets/maket/volkswagen.png' %></p>
 </div>
 <div id='content'>
-<h4><%= list_name %>'s list</h4>
+<h4><%= current_user.try(:profile).try(:fname) %>'s list</h4>
   <%= render :partial => 'front_end_form' if @list_item %>
 
   <% @list_items.each do |list_item| %>
@@ -43,11 +43,11 @@
 </div>
 <div id='friends'>
   <% @friends.each do |friend| %>
-    <a href="<%= list_items_path(:uid => friend.uid, :provider => friend.authentication.try(:provider)) %>" id='<%= friend.id %>'>
+    <a href="<%= list_item_path(friend.user) %>" id='<%= friend.id %>'>
       <p>
         <%= friend.name %><br />
         <span>
-          <%= Authentication.find_by_provider_and_uid(friend.authentication.try(:provider), friend.uid).try(:user).try(:list_items).try(:last).try(:title) %>
+          <%= friend.user.try(:list_items).try(:last).try(:title) %>
         </span>
       </p>
     </a>

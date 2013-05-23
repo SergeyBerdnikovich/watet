@@ -14,6 +14,7 @@ gem 'omniauth-google'
 gem 'fb_graph'
 gem "omniauth-google-oauth2"
 gem 'delayed_job_active_record'
+gem "friendly_id"
 
 # Gems used only for assets and not required
 # in production environments by default.

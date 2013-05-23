@@ -1,6 +1,7 @@
 Tet::Application.routes.draw do
 
   match 'list_items/send_email_with_list_items_link' => 'list_items#send_email_with_list_items_link', :as => :send_list_items
+
   resources :list_items
 
   resources :static_pages
