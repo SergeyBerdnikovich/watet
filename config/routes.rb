@@ -1,5 +1,10 @@
 Tet::Application.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
   match 'list_items/send_email_with_list_items_link' => 'list_items#send_email_with_list_items_link', :as => :send_list_items
 
   resources :list_items
@@ -14,6 +19,7 @@ Tet::Application.routes.draw do
   get "pages/welcome"
 
   devise_for :users, :skip => [:sessions, :passwords, :registrations] do
+  ActiveAdmin.routes(self)
     get "/users/sign_out" => "devise/sessions#destroy", :as => :destroy_user_session
   end
 end
