@@ -14,6 +14,7 @@
  *= require pages
  *= require scaffolds
  *= require static_pages
+ *= require profiles
  */
 
 body {

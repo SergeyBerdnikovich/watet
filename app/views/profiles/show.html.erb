@@ -1,0 +1,41 @@
+<div id='profile'>
+  <div id='profile_image'>
+    <%= image_tag @profile.avatar %>
+  </div>
+  <div id='profile_info'>
+    <table>
+      <tr>
+        <td>First Name: </td>
+        <td><%= @profile.fname %></td>
+      </tr>
+      <tr>
+        <td>Last Name: </td>
+        <td><%= @profile.lname %></td>
+      </tr>
+      <tr>
+        <td>City: </td>
+        <td><%= @profile.city %></td>
+      </tr>
+      <tr>
+        <td>State: </td>
+        <td><%= @profile.state %></td>
+      </tr>
+      <tr>
+        <td>Zip: </td>
+        <td><%= @profile.zip %></td>
+      </tr>
+      <tr>
+        <td>Phone: </td>
+        <td><%= @profile.phone %></td>
+      </tr>
+      <tr>
+        <td>Site link: </td>
+        <td><%= link_to @profile.site_link, @profile.site_link %></td>
+      </tr>
+    </table>
+  </div>
+  <div class='clear'></div>
+  <div>
+    <%= link_to 'Edit Profile', edit_profile_path(@profile) %>
+  </div>
+</div>

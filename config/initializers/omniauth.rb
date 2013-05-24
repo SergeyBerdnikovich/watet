@@ -4,7 +4,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   {
    :scope => "email",
    :secure_image_url => true,
-   :image_size => :square,
+   :image_size => :large,
    :display => 'popup'
   }
   #provider :google_oauth2, '127127904403.apps.googleusercontent.com', 'asg9jywPGgi_9ZKSNxBbDve7' #https://watet.dvporg.com
