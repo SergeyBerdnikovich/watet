@@ -12,7 +12,9 @@
       <%= render 'layouts/header' %>
     </div>
     <div id='content'>
-      <p class="notice"><%= notice %></p>
+      <% flash.each do |key, msg| %>
+        <%= content_tag :div, msg, :id => key %>
+      <% end %>
       <%= yield %>
     </div>
     <div id='footer'>
