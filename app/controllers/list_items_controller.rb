@@ -3,6 +3,7 @@ class ListItemsController < ApplicationController
   # GET /list_items.json
   before_filter :check_user, :only => [:edit, :update, :destroy]
   before_filter :check_current_user, :only => [:new, :create, :send_email_with_list_items_link]
+  before_filter :check_license, :only => [:index]
 
   def index
     if user_signed_in?
@@ -114,9 +115,5 @@ class ListItemsController < ApplicationController
     unless user_signed_in? && list_item.user.id == current_user.id
       redirect_to pages_welcome_path
     end
-  end
-
-  def check_current_user
-    redirect_to pages_welcome_path unless user_signed_in?
   end
 end

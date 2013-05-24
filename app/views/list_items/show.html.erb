@@ -54,9 +54,11 @@
   <% end %>
 </div>
 <div class='clear'></div>
-<div id='email'>
-  <%= form_tag(send_list_items_path) do %>
-    <%= email_field_tag :email %>
-    <%= submit_tag 'send list items' %>
-  <% end %>
-</div>
+<% if current_user %>
+  <div id='email'>
+    <%= form_tag(send_list_items_path) do %>
+      <%= email_field_tag :email %>
+      <%= submit_tag 'send list items' %>
+    <% end %>
+  </div>
+<% end %>

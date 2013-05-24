@@ -1,0 +1,11 @@
+<div style='margin:20px;'>
+  <%= show_page('license').html_safe %>
+  <%= form_for @profile do |f| %>
+    <p>
+      <%= f.label :agreed %>
+      <%= f.check_box :agreed %>
+
+      <%= f.submit 'agreed' %>
+    </p>
+  <% end %>
+</div>

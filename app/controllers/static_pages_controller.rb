@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  before_filter :check_current_user, :except => [:index, :show]
   # GET /static_pages
   # GET /static_pages.json
   def index
@@ -19,6 +20,10 @@ class StaticPagesController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @static_page }
     end
+  end
+
+  def license
+    @profile = current_user.profile
   end
 
   # GET /static_pages/new
@@ -79,5 +84,11 @@ class StaticPagesController < ApplicationController
       format.html { redirect_to static_pages_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def check_current_user
+    redirect_to pages_welcome_path unless user_signed_in?
   end
 end

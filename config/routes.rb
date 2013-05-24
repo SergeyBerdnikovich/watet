@@ -11,7 +11,10 @@ Tet::Application.routes.draw do
 
   resources :list_items
 
+  match '/static_pages/license' => 'static_pages#license', :as => :license
   resources :static_pages
+
+  resources :profiles, :only => [:update]
 
   match '/auth/:provider/callback' => 'authentications#create'
 
