@@ -20,9 +20,11 @@ class ListItemsController < ApplicationController
   # GET /list_items/1
   # GET /list_items/1.json
   def show
-    user = User.find(params[:id])
-    if user
-      user.list_items.blank? ? @list_items = [] : @list_items = user.list_items.order("list_items.created_at DESC")
+    @user = User.find(params[:id])
+    redirect_to root_path and return false if @user == current_user
+
+    if @user
+      @user.list_items.blank? ? @list_items = [] : @list_items = @user.list_items.order("list_items.created_at DESC")
       @friends = get_friends_for_(current_user) if user_signed_in?
       @friends ||= []
     else

@@ -18,6 +18,6 @@ class User < ActiveRecord::Base
   private
 
   def profile_name
-    "#{profile.try(:fname)}"
+    "#{profile.try(:fname)}-#{profile.try(:lname)}"
   end
 end

@@ -5,7 +5,7 @@
   <p id='volkswagen'><%= image_tag '/assets/maket/volkswagen.png' %></p>
 </div>
 <div id='content'>
-<h4><%= @list_items.first.try(:user).try(:profile).try(:fname) %>'s list</h4>
+<h4><%= @user.profile.try(:fname) %>'s list</h4>
   <%= render :partial => 'front_end_form' if @list_item %>
 
   <% @list_items.each do |list_item| %>
