@@ -7,12 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <p class="notice"><%= notice %></p>
   <div id='container'>
     <div id='header'>
       <%= render 'layouts/header' %>
     </div>
     <div id='content'>
+      <p class="notice"><%= notice %></p>
       <%= yield %>
     </div>
     <div id='footer'>

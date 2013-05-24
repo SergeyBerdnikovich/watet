@@ -3,9 +3,9 @@ class Mailer < ActionMailer::Base
 
   def send_list_items_link(user, email)
     if user.slug.blank?
-      @link = "http://watet.dvporg.com/list_items?#{user.id}"
+      @link = "http://watet.dvporg.com/list_items/#{user.id}"
     else
-      @link = "http://watet.dvporg.com/list_items?#{user.slug}"
+      @link = "http://watet.dvporg.com/list_items/#{user.slug}"
     end
 
     @user = user

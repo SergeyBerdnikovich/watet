@@ -1,7 +1,7 @@
 require 'update_friends_job'
 class AuthenticationsController < ApplicationController
   after_filter :set_friends, :only => [:create]
-  before_filter :check_license
+  before_filter :check_license, :except => [:create]
 
   # GET /authentications
   # GET /authentications.json
