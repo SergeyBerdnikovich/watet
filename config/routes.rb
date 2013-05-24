@@ -1,5 +1,7 @@
 Tet::Application.routes.draw do
 
+  root :to => 'list_items#index'
+
   mount Ckeditor::Engine => '/ckeditor'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -15,7 +17,6 @@ Tet::Application.routes.draw do
 
   resources :authentications, :only => [:index]
 
-  root :to => 'list_items#index'
   get "pages/welcome"
 
   devise_for :users, :skip => [:sessions, :passwords, :registrations] do
