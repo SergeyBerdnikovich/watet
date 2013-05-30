@@ -43,6 +43,15 @@
 #apple:hover {
   background: url('/assets/maket/apple_color.png');
 }
+
+.listitem {
+ border: 0px solid #000000;
+ background-color: #FFFFFF; 
+ margin-top:15px;
+ width:100%;
+}
+
+
 .listitem table {
   max-width: 400px;
 }

@@ -9,8 +9,11 @@ class ListItemsController < ApplicationController
     if user_signed_in?
       authentication = current_user.authentications.where(:provider => 'facebook')
       @friends = get_friends_for_(current_user)
-      @list_items = ListItem.where("user_id = ?", current_user.id).order("list_items.created_at DESC")
+      @list_items = ListItem.where("user_id = ?", current_user.id).order("list_items.priority ASC")
       @list_item = ListItem.new
+
+      @list_item.images.build
+
       @friends = get_friends_for_(current_user)
       @friends ||= []
     else
@@ -18,6 +21,22 @@ class ListItemsController < ApplicationController
     end
   end
 
+
+  def sort
+    logger = Logger.new("sort_log.txt")
+    logger.info params
+    order = params[:order]
+    i = 0
+    order.each{|id|
+      id = id.to_i #some more protection
+     sql = "UPDATE list_items SET priority = #{i} WHERE id = #{id} AND user_id = #{current_user.id}"
+     ActiveRecord::Base.connection.execute sql
+      i += 1
+    }
+
+    render :nothing => true, :status => 200
+
+  end
   # GET /list_items/1
   # GET /list_items/1.json
   def show
@@ -38,6 +57,8 @@ class ListItemsController < ApplicationController
   def new
     @list_item = ListItem.new
 
+    @list_item.images.build
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @list_item }
@@ -52,7 +73,14 @@ class ListItemsController < ApplicationController
   # POST /list_items
   # POST /list_items.json
   def create
+    # params[:project][:image] ||= {}
+    images_arr = params[:images]
+    params[:list_item].delete(:image)
     @list_item = current_user.list_items.build(params[:list_item])
+    
+      @image = Image.new(images_arr)
+      @list_item.images << @image
+    
 
     respond_to do |format|
       if @list_item.save

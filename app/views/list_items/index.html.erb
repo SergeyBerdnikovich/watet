@@ -1,4 +1,12 @@
 <%- model_class = ListItem -%>
+<script>
+  $(function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+  });
+  </script>
+
+
 <div id='banners'>
   <p id='nike'><%= image_tag '/assets/maket/nike.png' %></p>
   <a href="#"><p id='apple'></p></a>
@@ -7,8 +15,10 @@
 <div id='content'>
 <h4><%= current_user.try(:profile).try(:fname) %>'s list</h4>
   <%= render :partial => 'front_end_form' if @list_item %>
+<ul id="sortable">
 
   <% @list_items.each do |list_item| %>
+   <li class="ui-state-default" id='<%= list_item.id %>'>
     <div class='listitem'>
       <table class="table" >
         <tbody>
@@ -25,22 +35,33 @@
                                                                                    :class => 'btn btn-mini btn-danger' %>
               </td>
             <% end %>
-          </tr>
+          </tr> 
           <tr>
-            <td>Some user</td>
+            <td><%= list_item.user.profile.fname %></td>
             <td class='pull-right'><%= l list_item.created_at, :format => :short %></td>
           </tr>
           <tr>
             <td colspan=2><%= list_item.description %></td>
           </tr>
+          <% if list_item.images %>
+          <tr>
+            <td colspan=2>
+              <% list_item.images.each do |image| %>
+              <%= link_to image_tag(image.image.url(:thumb)), list_item_image_path(image.list_item_id, :id=>image.id) %>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
           <tr>
             <td></td>
           </tr>
         </tbody>
       </table>
     </div>
+  </li>
   <% end %>
-</div>
+  </ul>
+</div> 
 <div id='friends'>
   <% @friends.each do |friend| %>
     <a href="<%= list_item_path(friend.user) %>" id='<%= friend.id %>'>

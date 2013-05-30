@@ -20,6 +20,9 @@
 body {
   background-color: #FFFF9B;
 }
+ul {
+list-style: none;
+}
 
 .tellusmore{
   height: 150px;

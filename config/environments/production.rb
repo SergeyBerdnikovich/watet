@@ -68,8 +68,8 @@ Tet::Application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :user_name            => 'xxxxxxxx@xxxxx.xx',
-    :password             => 'xxxxxxxxxxxxx',
+    :user_name            => 'dvporg@gmail.com',
+    :password             => 'slssfpigofmapbin',
     :domain               => "gmail.com",
     :authentication       => 'plain',
     :enable_starttls_auto => true }

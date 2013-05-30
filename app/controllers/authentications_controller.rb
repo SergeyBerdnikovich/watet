@@ -23,20 +23,25 @@ class AuthenticationsController < ApplicationController
       current_user.authentications.create(:provider => omniauth['provider'], :uid => omniauth['uid'])
       flash[:notice] = 'Authentication sucessfull'
       redirect_to authentications_path
-    else
+    else 
       if User.find_by_email(omniauth['info']['email'])
-        drop_session
-        redirect_to authentications_path, :notice => 'This email is already used by someone, try to go through another social network...'
+       # drop_session
+       # redirect_to authentications_path, :notice => 'This email is already used by someone, try to go through another social network...'
+         user = User.new(:email => omniauth['provider'] +":"+omniauth['info']['email'])
+       
       else
+      user = User.new(:email => omniauth['info']['email'])
+      end
+    #  else
         initial_session(omniauth)
-        user = User.new(:email => omniauth['info']['email'])
+        #user = User.new(:email => omniauth['info']['email'])
         user.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
         set_profile(user, omniauth)
         user.save
         user.save(:validate => false)
         flash[:notice] = 'Signed in sucessfull'
         sign_in_and_redirect(:user, user)
-      end
+    #  end
     end
   end
 
@@ -60,7 +65,7 @@ class AuthenticationsController < ApplicationController
 
   def initial_session(omniauth)
     session[:soc_token] = omniauth['credentials']['token']
-    session[:soc_provider] = omniauth['provider']
+     session[:soc_provider] = omniauth['provider']
     session[:soc_uid] = omniauth['uid']
   end
 
