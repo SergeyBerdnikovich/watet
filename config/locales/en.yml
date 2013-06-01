@@ -2,6 +2,10 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
-  tell_us_more: "Please tell us more"
-  whats_up: "What's happening,"
+ time:
+    formats:
+      default: "%d-%m-%Y %I:%M %P"
+ hello: "Hello world"
+ tell_us_more: "Please tell us more"
+ whats_up: "What's happening,"
+ share_email: "Enter e-mail..."

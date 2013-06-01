@@ -1,5 +1,9 @@
-<%= form_for @list_item, :html => { :multipart => true } do |f| %>
-  <%= f.text_field 'title',  :placeholder => t(:whats_up) + current_user.try(:profile).try(:fname) + "?" %>
+<%= form_for @new_list_item, :html => { :multipart => true } do |f| %>
+<div class='bordered'>
+  <%= f.text_field 'title', :class => "noFocus transparent_bg new_item",  :placeholder => t(:whats_up) + current_user.try(:profile).try(:fname) + "?" %>
+  <%= image_submit_tag("plus.png", :class => 'new_li_submit' ) %>
+</div>
+  <% if false %>
   <%= f.submit "Add to list", :disable_with => "Please wait...", :class => "btn btn-primary", :style => "margin-bottom:10px" %><br>
   <%= f.text_area 'description',  :placeholder => t(:tell_us_more), :class => 'tellusmore'%><br>
     Please attach images:
@@ -7,5 +11,6 @@
 
     <%= ff.file_field :image %>
 
+  <% end %>
   <% end %>
 <% end %>

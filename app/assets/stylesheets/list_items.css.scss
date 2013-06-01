@@ -3,58 +3,274 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #friends {
-  margin-top: 20px;
-  float: right;
-  height: 550px;
-  overflow-y: scroll;
-  max-width: 280px;
+margin-top: 20px;
+height: 550px;
+//overflow-y: scroll;
+max-width: 280px;
 }
 
 #friends p {
-  padding: 10px;
-  margin: 0;
-  border-radius: 10px;
-  font: 120% bold sans-serif;
+padding: 10px;
+margin: 0;
+border-radius: 10px;
+font: 120% bold sans-serif;
 }
 #friends p:hover {
-  background-color: #DFDFA2;
+background-color: #DFDFA2;
 }
 #friends a {
-  text-decoration: none;
+text-decoration: none;
 }
 #friends a:visited {
-  color: black;
+color: black;
 }
-#banners {
-  float: left;
-  margin: 20px 20px 20px 0px;
-}
+
 #content {
-  min-width: 400px;
-  padding: 10px;
-  margin: 20px auto;
-  float: left;
+
+
 }
 #apple {
-  height: 208px;
-  width: 135px;
-  background-image: url('/assets/maket/apple.png');
+
+
 }
 #apple:hover {
-  background: url('/assets/maket/apple_color.png');
-}
 
-.listitem {
- border: 0px solid #000000;
- background-color: #FFFFFF; 
- margin-top:15px;
- width:100%;
 }
 
 
-.listitem table {
-  max-width: 400px;
+
+
+.hr {
+border-top: 2px dotted #999999;
+color: #999999;
+background-color: #999999;
+opacity:0.3;
+height: 1px;
+width:100%;
+background: transparent;
+margin-bottom: 6px;
 }
-#email {
-  margin-left: 110px;
+
+
+
+.list_item_active {
+border: 0px solid #000000;
+background-color: #FFFFFF;
+margin-bottom: 6px;
+padding:15px 15px 15px 15px;
+
+
+
+#list_item_title{
+font-size: 19px;
+}
+
+#list_item_name{
+font-size: 13px;
+
+color: #999999;
+}
+
+#list_item_des{
+font-size: 14px;
+margin-top: 0px;
+
+}
+
+#list_item_images{
+font-size: 14px;
+margin-top: 0px;
+margin-bottom: 0px;
+
+}
+
+#buttons{
+
+margin-right:-13px
+
+}
+
+}
+
+
+.list_item {
+border: 0px solid #000000;
+background-color: transparent;
+margin-bottom: 0px;
+padding:15px 15px 10px 15px;
+
+
+
+#list_item_title{
+font-size: 19px;
+}
+
+#list_item_name{
+font-size: 13px;
+display: none;
+color: #999999;
+}
+
+#list_item_des{
+display: none;
+font-size: 14px;
+margin-top: 0px;
+
+}
+
+#list_item_images{
+display: none;
+font-size: 14px;
+margin-top: 0px;
+margin-bottom: 0px;
+
+}
+
+#buttons{
+display: none;
+margin-right:-13px
+
+}
+
+}
+
+
+
+.list_item_hover {
+border: 0px solid #000000;
+background-color: transparent;
+margin-bottom: -10px;
+padding:15px 15px 0px 15px;
+
+
+
+#list_item_title{
+font-size: 19px;
+}
+
+#list_item_name{
+font-size: 13px;
+color: #999999;
+}
+
+#list_item_des{
+display: none;
+font-size: 14px;
+margin-top: 0px;
+
+}
+
+#list_item_images{
+display: none;
+font-size: 14px;
+margin-top: 0px;
+margin-bottom: 0px;
+
+}
+
+#buttons{
+margin-right:-13px
+
+}
+
+}
+
+
+.list_item_edit {
+border: 1px solid #000000;
+background-color: #FFFFFF;
+margin-bottom: 6px;
+padding:15px 15px 1px 15px;
+
+
+
+#list_item_title{
+font-size: 19px;
+width:100%;
+height: 20px;
+border: 0px solid #0;
+border: none;
+border-color: transparent;
+outline: 0;
+}
+
+
+
+#list_item_name{
+font-size: 13px;
+
+color: #999999;
+}
+
+#list_item_des{
+font-size: 14px;
+margin-top: 10px;
+margin-bottom: 12px;
+width: 100%;
+height: 100px;
+border: 0px solid #0;
+border: none;
+border-color: transparent;
+outline: 0;
+
+
+}
+#list_item_des:focus{
+outline: 0;
+}
+#list_item_images{
+font-size: 14px; 
+padding-top: 20px;
+margin-bottom: -5px;
+
+}
+
+#buttons{
+
+margin-right:-13px
+
+}
+
+}
+
+.noFocus, .noFocus:focus {
+outline:0px !important;
+
+outline: none  !important;
+-webkit-appearance:none;
+box-shadow: none;
+-moz-box-shadow: none;
+-webkit-box-shadow: none;
+outline: none;
+  border:none !important;
+  box-shadow:none !important;
+}
+
+
+.transparent_bg{
+background-color: #FFFF9B  !important;
+}
+
+.bordered{
+  border: 1px solid #999999;
+  height:30px;
+}
+
+.new_item{
+  
+  width:80%
+}
+
+.new_li_submit{
+  float:right;
+  padding: 7px 15px;  
+}
+
+.send_email{
+
+}
+
+.new_li_submit{
+  float:right;
+  padding: 7px 15px;  
 }

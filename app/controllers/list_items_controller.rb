@@ -10,9 +10,9 @@ class ListItemsController < ApplicationController
       authentication = current_user.authentications.where(:provider => 'facebook')
       @friends = get_friends_for_(current_user)
       @list_items = ListItem.where("user_id = ?", current_user.id).order("list_items.priority ASC")
-      @list_item = ListItem.new
+      @new_list_item = ListItem.new
 
-      @list_item.images.build
+      @new_list_item.images.build
 
       @friends = get_friends_for_(current_user)
       @friends ||= []
@@ -40,16 +40,16 @@ class ListItemsController < ApplicationController
   # GET /list_items/1
   # GET /list_items/1.json
   def show
-    @user = User.find(params[:id])
-    redirect_to root_path and return false if @user == current_user
+    @list_item = ListItem.find(params[:id])
+ #   redirect_to root_path and return false if @user == current_user
 
-    if @user
-      @user.list_items.blank? ? @list_items = [] : @list_items = @user.list_items.order("list_items.created_at DESC")
-      @friends = get_friends_for_(current_user) if user_signed_in?
-      @friends ||= []
-    else
-      redirect_to root_path, :notice => 'User not found...'
-    end
+ #   if @user
+ #     @user.list_items.blank? ? @list_items = [] : @list_items = @user.list_items.order("list_items.created_at DESC")
+ #     @friends = get_friends_for_(current_user) if user_signed_in?
+ #     @friends ||= []
+ #   else
+ #     redirect_to root_path, :notice => 'User not found...'
+ #   end
   end
 
   # GET /list_items/new
@@ -101,7 +101,7 @@ class ListItemsController < ApplicationController
     respond_to do |format|
       if @list_item.update_attributes(params[:list_item])
         format.html { redirect_to list_items_url, notice: 'List item was successfully updated.' }
-        format.json { head :no_content }
+        format.json { render :json => @list_item }
       else
         format.html { render action: "edit" }
         format.json { render json: @list_item.errors, status: :unprocessable_entity }

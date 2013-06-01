@@ -1,25 +1,14 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <b>Name:</b>
-  <%= @static_page.name %>
-</p>
-
-<p>
-  <b>Title:</b>
+<div class='row'>
+	<div class='span8 offset2'>
+<h1>  
   <%= @static_page.title %>
-</p>
+</h1>
 
-<p>
-  <b>Content:</b>
   <%= @static_page.content %>
-</p>
-
-<p>
-  <b>Locale:</b>
-  <%= @static_page.locale %>
-</p>
-
-
-<%= link_to 'Edit', edit_static_page_path(@static_page) %> |
-<%= link_to 'Back', static_pages_path %>
+  <p>
+  	<center>
+ <%= link_to_function "".html_safe + image_tag("back.png"), "history.back()" %>
+</center>
+ </div>
+</div>
