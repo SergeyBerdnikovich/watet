@@ -101,7 +101,9 @@ class ListItemsController < ApplicationController
     respond_to do |format|
       if @list_item.update_attributes(params[:list_item])
         format.html { redirect_to list_items_url, notice: 'List item was successfully updated.' }
-        format.json { render :json => @list_item }
+        format.json { 
+          render :json => @list_item 
+        }
       else
         format.html { render action: "edit" }
         format.json { render json: @list_item.errors, status: :unprocessable_entity }

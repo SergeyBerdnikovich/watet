@@ -9,5 +9,9 @@ class ListItem < ActiveRecord::Base
   
   belongs_to :user
 
+def as_json(options={})
+  super(  :only => [:id,:title,:description,:priority,:user_id]   )
+end
+
 
 end

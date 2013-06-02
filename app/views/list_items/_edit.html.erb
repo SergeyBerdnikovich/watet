@@ -1,5 +1,5 @@
    <% if @list_item %>
-   <%=  form_for @list_item, :id => "list_item_form", :remote => false do |f|%>
+   <%=  form_for @list_item, :id => "list_item_form", :remote => true, :html => {:'data-type' => 'json', :multipart => true} do |f|%>
   <div class='row-fluid noFocus'>
   <div class='span9 list_item_title noFocus'>  
   <%=  f.text_field :title, :value => @list_item.title, :class => "noFocus", :id =>  'list_item_title'  %><br>
@@ -11,7 +11,7 @@
   <%= image_submit_tag("save.png") %>
  
   <%= link_to ''.html_safe + image_tag("cancel.png"), list_item_path(@list_item), :remote => true,
-  :class => 'btn btn-link' %>
+  :class => 'btn btn-link', :id => "close_#{@list_item.id}" %>
 </div><br>
 <span class='pull-right'>
    <font id='list_item_name'><%= l @list_item.created_at %></font>
@@ -48,9 +48,8 @@
 $(document).ready(function(){
 	
   	$('.edit_list_item') .bind('ajax:success', function(data, status, xhr) {
- alert(data)
-alert(xhr)
-alert(status)
+
+$("#close_" + status.id).click()
 
 	})
 })
