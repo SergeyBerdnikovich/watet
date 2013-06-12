@@ -33,3 +33,8 @@
   </a>
 </div>
 <div class='clear'></div>
+<% if current_user %>
+<p><br><p>
+<h4>Delete your account</h4>
+Delete your account and all associated data -  <%= link_to "".html_safe + image_tag("delete_button.png"), user_delete_path(current_user) %>
+<% end %>

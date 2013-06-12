@@ -1,7 +1,11 @@
 <%= form_for @new_list_item, :html => { :multipart => true } do |f| %>
-<div class='bordered'>
-  <%= f.text_field 'title', :class => "noFocus transparent_bg new_item",  :placeholder => t(:whats_up) + current_user.try(:profile).try(:fname) + "?" %>
-  <%= image_submit_tag("plus.png", :class => 'new_li_submit' ) %>
+<div class='bordered new_item_container'>
+  <div class='new_item'>
+  <%= f.text_field 'title', :class => "noFocus transparent_bg new_item_text",  :placeholder => t(:whats_up) + current_user.try(:profile).try(:fname) + "?" %>
+  </div>
+  <div class='new_li_submit'>
+  <%= image_submit_tag("plus.png", :class => '' ) %>
+</div> 
 </div>
   <% if false %>
   <%= f.submit "Add to list", :disable_with => "Please wait...", :class => "btn btn-primary", :style => "margin-bottom:10px" %><br>

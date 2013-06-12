@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
-  has_many :authentications
-  has_many :list_items
-  has_one :profile
-  has_many :friends
+  has_many :authentications, :dependent => :destroy
+  has_many :list_items, :dependent => :destroy
+  has_one :profile, :dependent => :destroy
+  has_many :friends, :dependent => :destroy
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable

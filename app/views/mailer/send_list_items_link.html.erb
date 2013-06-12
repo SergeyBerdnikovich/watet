@@ -1,2 +1,2 @@
-<h1>List items from <%= @user.email %></h1>
-<p><a href='<%= @link %>'>list items</a></p>
+<h1><%= @user.profile.fname%> <%= @user.profile.lname %> <%= t(:share_email_subject) %> </h1>
+<p><%= t(:share_email_text) %><a href='<%= @link %>'><%= @link %></a></p>

@@ -14,7 +14,7 @@
         <tbody>
           <tr>
             <td><h5><%= list_item.title%></h5></td>
-            <% if @list_item %>
+            <%  if @new_list_item %>
               <td class='pull-right'>
                 <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_list_item_path(list_item),
                                                                              :class => 'btn btn-mini' %>

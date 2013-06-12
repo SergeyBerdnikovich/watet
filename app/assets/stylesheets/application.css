@@ -16,12 +16,6 @@
  *= require static_pages
  *= require profiles
  */
-html {
-   background: transparent;
-background-color: #FFFF9B;
- height: 100%; 
- width: 100%;
-  }
 
 .yellowbg {
   background-color: #FFFF9B;

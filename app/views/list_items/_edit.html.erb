@@ -1,20 +1,26 @@
-   <% if @list_item %>
-   <%=  form_for @list_item, :id => "list_item_form", :remote => true, :html => {:'data-type' => 'json', :multipart => true} do |f|%>
+ 
+ <%  list_item = @list_item  if @list_item %>
+
+  <% if list_item %>
+   <%=  form_for list_item, :id => "list_item_form", :remote => true, :html => {:'data-type' => 'json', :multipart => true} do |f|%>
   <div class='row-fluid noFocus'>
   <div class='span9 list_item_title noFocus'>  
-  <%=  f.text_field :title, :value => @list_item.title, :class => "noFocus", :id =>  'list_item_title'  %><br>
-  <font id='list_item_name' class=''><%= @list_item.user.profile.fname %></font>
+  <%=  f.text_field :title, :value => list_item.title, :class => "noFocus", :id =>  'list_item_title'  %><br>
+  <font id='list_item_name' class=''><%= list_item.user.profile.fname %></font>
 </div>
 <div class='span3'>
   <div class='pull-right' id='buttons'>
     
   <%= image_submit_tag("save.png") %>
  
-  <%= link_to ''.html_safe + image_tag("cancel.png"), list_item_path(@list_item), :remote => true,
-  :class => 'btn btn-link', :id => "close_#{@list_item.id}" %>
+  <%= link_to ''.html_safe + image_tag("cancel.png"), list_item_path(list_item), :remote => true,
+  :class => 'btn btn-link', :id => "close_#{list_item.id}" %>
+
+    <%= link_to ''.html_safe + image_tag("cancel.png"), edit_list_item_path(list_item), :remote => true,
+  :style => 'display:none', :id => "edit_#{list_item.id}" %>
 </div><br>
 <span class='pull-right'>
-   <font id='list_item_name'><%= l @list_item.created_at %></font>
+   <font id='list_item_name'><%= l list_item.created_at %></font>
 </span>
 </div>
 </div>
@@ -22,28 +28,19 @@
   <div class='row-fluid '>
     <div class='span12 '>
       <div id='list_item_des'>
-  <%= f.text_area :description, :class => "noFocus", :id => 'list_item_des' %>
+  <%= f.text_area :description, :class => "noFocus edit_box",:placeholder => t(:tell_us_more) , :id => 'list_item_des' %>
 </div>
     </div>
 </div>
 
 <div class='row-fluid '>
 	  <div id='list_item_images'>
-  <% if @list_item.images %>
-   <% if @list_item.images.size != 0 %>
-  <% @list_item.images.each do |image| %>
-    <%= link_to image_tag(image.image.url(:thumb)), list_item_image_path(image.list_item_id, :id=>image.id)  if image.image.url.index('missing.png') == nil %>
-  <% end %>
-
-<% end %>    
-
-  <% end %>
-   <%= image_tag("add_photo.png") %>
-   </div>
-     </div>
+<iframe class='image_iframe' id='edit_images'src='<%= list_item_image_form_path(list_item)%>'></iframe>
+  
+  </div>
   <% end %>
   <% end %>
-
+</div>
   <script>
 $(document).ready(function(){
 	
@@ -52,5 +49,17 @@ $(document).ready(function(){
 $("#close_" + status.id).click()
 
 	})
+
+   $('#edit_images').load(function(){
+     $("#edit_images").contents().find("#image").click(function(){
+alert('works!')
+
+     });
+   });
+
+
+
 })
+
+
 </script>

@@ -1,28 +1,54 @@
 <%- model_class = ListItem -%>
+<% if @new_list_item %>
 <script>
 $(function() {
-  $( "#sortable" ).sortable();
+  $("#sortable").sortable({
+    stop: function( event, ui ) {
+      var sortedIDs = $( "#sortable" ).sortable( "toArray" );
+
+      var request = $.ajax({
+        type: "GET",
+        url: "http://watet.dvporg.com/list_items/sort",
+        data: { order: sortedIDs },
+        dataType: "HTML"
+      })
+
+      request.done(function(msg) {
+      });
+
+      request.fail(function(jqXHR, textStatus,errorThrown ) {
+      });
+
+    }
+
+  });
   $( "#sortable" ).disableSelection();
 });
 </script>
+<% end %>
 
 <div class="row">
 <div id='banners' class='span2'>
-<p id='nike'><%= image_tag '/assets/maket/nike.png' %></p>
-<p id='apple'><%= image_tag '/assets/maket/apple.png' %></p>
-<p id='volkswagen'><%= image_tag '/assets/maket/volkswagen.png' %></p>
+  <% Banner.all.each do |banner| %>
+<p class='banner'><%= image_tag banner.image, :class => "banner_image" %></p>
+<% end %>
 </div>
 <div  class='span8'>
-<h4><%= current_user.try(:profile).try(:fname) %>'s list</h4>
-<%= render :partial => 'front_end_form' if @new_list_item %>
+<h4><%= @user.try(:profile).try(:fname) %>'s list</h4>
+<%= render :partial => 'list_items/front_end_form' if @new_list_item %>
 <span id="sortable">
 
 <% @list_items.each do |list_item| %>  
   <div class="ui-state-default draggable" id='<%= list_item.id %>'>
   <div class='hr'></div>
+  
+  <% if list_item.id != session[:open_edit] %>
   <div class='list_item li' id='li<%= list_item.id %>'>
-  <% if list_item %>
- <%= render 'show' , list_item: list_item %>
+ <%= render 'list_items/show' , list_item: list_item %>
+ <% else %>
+ <div class='list_item_edit li' id='li<%= list_item.id %>'>
+ <%= render 'list_items/edit' , :list_item => list_item  %>
+ <% session.delete(:open_edit) %>
   <% end %>
     </div>
     </div>
@@ -31,17 +57,24 @@ $(function() {
     </div>
     <div id='friends' class='span2'>
     <% @friends.each do |friend| %>
-      <a href="<%= list_item_path(friend.user) %>" id='<%= friend.id %>'>
+  <span class='friend_name'>    
+      <a href="<%= user_path(friend.user) %>" id='<%= friend.id %>'>
       <p>
       <%= friend.name %><br />
-      <span>
-      <%= friend.user.try(:list_items).try(:last).try(:title) %>
+      </a>
+    </span>
+
+      <span class='friend_item'>
+      <a href="<%= user_path(friend.user) %>" id='<%= friend.id %>'>   
+        <% last_title = friend.user.try(:list_items).order('priority DESC').limit(1).first.try(:title) %>
+      <%= truncate( last_title, :length => 150) if last_title %></a>
       </span>
       </p>
       </a>
       <% end %>
       </div>
-     
+     <% if @new_list_item %>
+     <% if @list_items.size != 0 %>
       <div class="row-fluid">
       <div id='banners' class='span3 offset2'>
       <div class='bordered'>
@@ -60,3 +93,5 @@ $(function() {
 
                 </div>
         </div>
+        <% end %>
+        <% end %>

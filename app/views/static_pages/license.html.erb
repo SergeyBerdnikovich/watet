@@ -1,11 +1,26 @@
 <div style='margin:20px;'>
-  <%= show_page('license').html_safe %>
-  <%= form_for @profile do |f| %>
-    <p>
-      <%= f.label :agreed %>
-      <%= f.check_box :agreed %>
+  <%= show_page('license', true,true).html_safe %>
 
-      <%= f.submit 'agreed' %>
+  <%= form_for  @profile, :url => profile_path(@profile) , :_method => :put do |f| %>
+<div class='row' style='padding-top:20px'>
+	<input type='hidden' name ='redirect' value="root">
+	<p><br><p>
+	<div class='span4'>
+		<%= link_to "".html_safe + image_tag("back.png"), destroy_user_session_path   %>
+	</div>	
+
+    	<div class='span5'>
+    		 <div class="control-group">
+     <%= f.label :agreed, "I agree", :class => 'control-label checkbox inline' %>
+     <div class="controls checkbox inline">
+      <%= f.check_box :agreed %>
+      </div>
+        </div>
+</div>
+<div class='span2'>
+		<%=  image_tag("agree.png", :id => 'agree_button', :class => 'agree_button' ) %>   
+		<%= f.submit :id => "submit_button", :style => "display:none" %>   
+  </div>
     </p>
   <% end %>
 </div>

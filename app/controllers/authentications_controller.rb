@@ -16,13 +16,18 @@ class AuthenticationsController < ApplicationController
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     initial_session(omniauth) unless current_user
 
-    if authentication
-      flash[:notice] = 'Signed in sucessfull'
-      sign_in_and_redirect(:user, authentication.user)
-    elsif current_user
+    if current_user
+      if  authentication #if such user with such SN already exists
+      flash[:error] = 'You have already register another account with that social network'
+      redirect_to authentications_path and return false
+      else
       current_user.authentications.create(:provider => omniauth['provider'], :uid => omniauth['uid'])
       flash[:notice] = 'Authentication sucessfull'
       redirect_to authentications_path
+      end
+    elsif authentication
+      flash[:notice] = 'Signed in sucessfull'
+      sign_in_and_redirect(:user, authentication.user)
     else 
       if User.find_by_email(omniauth['info']['email'])
        # drop_session
@@ -78,16 +83,21 @@ class AuthenticationsController < ApplicationController
   def set_profile(user, omniauth)
     #session[:soc_email] = omniauth['info']['email']
     if omniauth['provider'] == 'google_oauth2'
+      avatar = omniauth['extra']['raw_info']['picture']
+      avatar = 'default.gif' unless avatar != ""
       user.build_profile(:fname =>  omniauth['extra']['raw_info']['given_name'],
                          :lname =>  omniauth['extra']['raw_info']['family_name'],
-                         :avatar => omniauth['extra']['raw_info']['picture'],
+                         :avatar => avatar,
                          :site_link => omniauth['extra']['raw_info']['link'],
                          :agreed => false)
     elsif omniauth['provider'] == 'facebook'
       #fb_user = FbGraph::User.me(omniauth['credentials']['token']).fetch
+      avatar = omniauth['info']['image']
+      avatar = 'default.gif' unless avatar != ""
+
       user.build_profile(:fname =>  omniauth['info']['first_name'],
                          :lname =>  omniauth['info']['last_name'],
-                         :avatar => omniauth['info']['image'],
+                         :avatar => avatar,
                          :site_link => omniauth['extra']['raw_info']['link'],
                          :agreed => false)
     end

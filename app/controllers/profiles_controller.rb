@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_filter :check_current_user
-  before_filter :check_license, :except => [:update]
+  before_filter :check_license, :except => :update
 
   def show
     @profile = Profile.where("id = ?", params[:id]).first
@@ -15,6 +15,10 @@ class ProfilesController < ApplicationController
     @profile = current_user.profile
 
     @profile.update_attributes(params[:profile])
-    redirect_to profile_path(@profile)
+    if params['redirect'] != 'root'
+      redirect_to profile_path(@profile)
+    else
+      redirect_to root_path()
+    end
   end
 end

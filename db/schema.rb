@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130601232305) do
+ActiveRecord::Schema.define(:version => 20130610213208) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -52,6 +52,17 @@ ActiveRecord::Schema.define(:version => 20130601232305) do
     t.string   "uid"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "banners", :force => true do |t|
+    t.string   "name"
+    t.string   "alt"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "ckeditor_assets", :force => true do |t|
