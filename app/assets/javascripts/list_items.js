@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 $('.deleter').bind('ajax:success', function() {
- 
+
 list_item_id = $(this).attr('list_item_id')
 $('#'+list_item_id).remove()
 $(window).resize()
@@ -14,7 +14,7 @@ $(this).attr('class', 'banner_active')
 		$('.banner').mouseleave(function(){
 
 			$(this).attr('class', 'banner')
-			
+
 		})
 
 
@@ -30,7 +30,7 @@ width = container - submit - 10
 
 
 $('.new_item').width(width)
-$('.new_li_submit').css('left',width + container_left + 9)
+// $('.new_li_submit').css('left',width + container_left + 9)
 
 }
 
@@ -78,7 +78,7 @@ $(window).resize()
 
 
 
-	$('.li').click(function(e) {	
+	$('.li').click(function(e) {
 		if(e.target.className.indexOf('toggler') != -1){
 			current_class = $(this).attr('class')
 		if (current_class != "list_item_active"){
