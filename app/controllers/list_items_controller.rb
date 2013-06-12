@@ -85,7 +85,14 @@ class ListItemsController < ApplicationController
     @list_item = current_user.list_items.build(params[:list_item])
 
     #setting up the highiest priority to new list item appears at the top
-    @list_item.priority = ListItem.select('priority').where('priority IS NOT NULL').limit(1).order('priority ASC').first.priority - 1  
+    biggest_priority = current_user.list_items.where('priority IS NOT NULL').limit(1).order('priority ASC').first
+    if biggest_priority
+      biggest_priority = biggest_priority.priority
+    else
+      biggest_priority = 0
+    end
+    
+    @list_item.priority = biggest_priority - 1  
     @image = Image.new(images_arr)
     @list_item.images << @image
 
