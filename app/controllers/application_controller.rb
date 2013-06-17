@@ -1,14 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  before_filter :set_locale
+
   def omniauth_failure
     redirect_to authentications_path, :alert => t(:auth_failed)
   end
-  
+
   private
 
-
-  
   def get_friends_for_(current_user)
     friends = []
     current_user.authentications.each do |authentication|
@@ -31,5 +31,19 @@ class ApplicationController < ActionController::Base
 
   def check_current_user
     redirect_to pages_welcome_path unless user_signed_in?
+  end
+
+  def default_url_options(options={})
+    logger.debug "default_url_options is passed options: #{options.inspect}\n"
+    { :locale => I18n.locale }
+  end
+
+  def set_locale
+    if session[:locale]
+      I18n.locale = params[:locale] || session[:locale]
+    else
+      I18n.locale = params[:locale] || I18n.default_locale
+    end
+    session[:locale] = I18n.locale
   end
 end

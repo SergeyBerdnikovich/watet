@@ -2,17 +2,17 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
- time:
+  time:
     formats:
       default: "%d-%m-%Y %I:%M %P"
- hello: "Hello world"
- tell_us_more: "Please tell us more"
- whats_up: "What's happening,"
- share_email: "Enter e-mail..."
- share_email_subject: "share his whish list with you"
- share_email_text: "Please follow this link to observe the list - "
- delete_page_header: "Delete the page"
- delete_page_text: "Delete my account and all data"
- confirm_acc_deletion: "Are you sure to permanently delete ALL data and your account?"
- tc_need_agree: "In order to use our service please accept Terms And Conditions"
- auth_failed: "Authorization failed. Please try once again."
+  hello: "Hello world"
+  tell_us_more: "Please tell us more"
+  whats_up: "What's happening,"
+  share_email: "Enter e-mail..."
+  share_email_subject: "share his whish list with you"
+  share_email_text: "Please follow this link to observe the list - "
+  delete_page_header: "Delete the page"
+  delete_page_text: "Delete my account and all data"
+  confirm_acc_deletion: "Are you sure to permanently delete ALL data and your account?"
+  tc_need_agree: "In order to use our service please accept Terms And Conditions"
+  auth_failed: "Authorization failed. Please try once again."

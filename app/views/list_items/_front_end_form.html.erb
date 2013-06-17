@@ -1,7 +1,7 @@
 <%= form_for @new_list_item, :html => { :multipart => true } do |f| %>
 <div class='bordered new_item_container'>
   <div class='new_item'>
-  <%= f.text_field 'title', :class => "noFocus transparent_bg new_item_text", :style => 'float:left; width:95%;', :placeholder => t(:whats_up) + current_user.try(:profile).try(:fname) + "?" %>
+  <%= f.text_field 'title', :class => "noFocus transparent_bg new_item_text", :style => 'float:left; width:95%;', :placeholder => t('whats_up') + current_user.try(:profile).try(:fname) + "?" %>
 
   </div>
   <%= image_submit_tag("plus.png", :class => '', :style => 'margin:7px; float:right;' ) %>
