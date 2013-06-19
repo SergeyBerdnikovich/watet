@@ -48,7 +48,7 @@
   <% if current_user %>
     <ul id='ddmenu'>
       <li style='min-width:130px'>
-        <a href="#" id='user'><img src="/assets/language/<%= session[:locale] %>.png"> <span id ='btn'><%= image_tag '/assets/maket/ddmenu_arrow.png' %></span></a>
+        <a href="#" id='user' style='background-color:#EFEFB7;'><img src="/assets/language/<%= session[:locale] %>.png"> <span id ='btn'><%= image_tag '/assets/maket/ddmenu_arrow.png' %></span></a>
         <ul>
           <li id='first'><a href="<%= settings_path(:locale => :ru) %>"><img src="/assets/language/ru.png"> Язык</a></li>
           <li><a href="<%= settings_path(:locale => :en) %>"><img src="/assets/language/en.png"> Language</a></li>
