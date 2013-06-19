@@ -3,14 +3,14 @@
 <div class='row-fluid'>
   <div class='span9 toggler'>
     <p id='list_item_title' class='toggler' ><%= list_item.title %></p>
-    <font id='list_item_name' class='toggler'><%= list_item.user.profile.fname %></font><br /><br />
+    <!-- <font id='list_item_name' class='toggler'><%= list_item.user.profile.fname %></font><br /><br /> -->
   </div>
   <div class='span3'>
     <div class='pull-right' id='buttons'>
       <% if new_list_item %>
         <%= link_to ''.html_safe + image_tag("edit.png"), edit_list_item_path(list_item), :remote => true,
                                                                                           :class => 'btn btn-link' %>
-        <%= image_tag("geo.png") %>
+        <%#= image_tag("geo.png") %>
         <%= link_to ''.html_safe + image_tag("trash.png"), list_item_path(list_item), :method => :delete,
                                                                                       :data => { :confirm => t('.confirm',
                                                                                                  :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
@@ -20,7 +20,7 @@
       <% end %>
     </div><br>
     <span class='pull-right'>
-      <% if params[:id] == current_user.slug %>
+      <% if current_user && params[:id] == current_user.slug %>
         <font id='list_item_date'><%= l list_item.created_at %></font>
       <% else %>
         <font id='list_item_date' style='margin-left: -137px;'><%= l list_item.created_at %></font>

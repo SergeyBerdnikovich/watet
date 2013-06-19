@@ -28,12 +28,12 @@ class AuthenticationsController < ApplicationController
     elsif authentication
       flash[:notice] = 'Signed in sucessfull'
       sign_in_and_redirect(:user, authentication.user)
-    else 
+    else
       if User.find_by_email(omniauth['info']['email'])
        # drop_session
        # redirect_to authentications_path, :notice => 'This email is already used by someone, try to go through another social network...'
          user = User.new(:email => omniauth['provider'] +":"+omniauth['info']['email'])
-       
+
       else
       user = User.new(:email => omniauth['info']['email'])
       end

@@ -1,7 +1,30 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.agree_button 
+.agree_button
 {
 cursor:pointer;
+}
+input#profile_agreed {
+  display: none;
+}
+input#profile_agreed + label {
+  font: 18px bold;
+  color: #444;
+  cursor: pointer;
+}
+input#profile_agreed + label::after {
+  content: "";
+  display: inline-block;
+  height: 23px;
+  width: 23px;
+  margin: 0 0 -4px 7px;
+  background: url(/assets/maket/checkbox2.png);
+  background-repeat: no-repeat;
+}
+input#profile_agreed:checked + label::after {
+  background-image: url(/assets/maket/checkbox.png);
+}
+.opcy:active {
+  opacity: 0.5;
 }

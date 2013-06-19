@@ -39,11 +39,14 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    if session[:locale]
+    if current_user && current_user.profile.try(:language)
+      I18n.locale = params[:locale] || current_user.profile.try(:language) || session[:locale] || I18n.default_locale
+    elsif session[:locale]
       I18n.locale = params[:locale] || session[:locale]
     else
       I18n.locale = params[:locale] || I18n.default_locale
     end
     session[:locale] = I18n.locale
+    current_user.profile.update_attribute(:language, I18n.locale) if current_user.try(:profile)
   end
 end

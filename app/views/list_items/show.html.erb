@@ -5,7 +5,7 @@
   <p id='volkswagen'><%= image_tag '/assets/maket/volkswagen.png' %></p>
 </div>
 <div id='content'>
-<h4><%= @user.profile.try(:fname) %>'s list</h4>
+<h4 style='margin-left:20px;'><%= @user.profile.try(:fname) %>'s list</h4>
   <%= render :partial => 'front_end_form' if @list_item %>
 
   <% @list_items.each do |list_item| %>
@@ -13,7 +13,7 @@
       <table class="table" >
         <tbody>
           <tr>
-            <td><h5><%= list_item.title%></h5></td>
+            <td><h5><%= list_item.title %></h5></td>
             <%  if @new_list_item %>
               <td class='pull-right'>
                 <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_list_item_path(list_item),

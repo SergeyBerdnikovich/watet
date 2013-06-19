@@ -37,7 +37,7 @@ class ListItemsController < ApplicationController
     @list_item = ListItem.find(params[:id])
      @user = @list_item.user
       if @user == current_user
-      @new_list_item = ListItem.new 
+      @new_list_item = ListItem.new
       @new_list_item.images.build
       end
     #   redirect_to root_path and return false if @user == current_user
@@ -91,18 +91,18 @@ class ListItemsController < ApplicationController
     else
       biggest_priority = 0
     end
-    
-    @list_item.priority = biggest_priority - 1  
+
+    @list_item.priority = biggest_priority - 1
     @image = Image.new(images_arr)
     @list_item.images << @image
 
 
     respond_to do |format|
       if @list_item.save
-        
-        format.html { 
+
+        format.html {
           session[:open_edit] = @list_item.id #to open new list item in edit mode in fronend after creation
-          redirect_to user_url(current_user), notice: 'List item was successfully created.' }
+          redirect_to user_url(current_user) }
         format.json { render json: @list_item, status: :created, location: @list_item }
       else
         format.html { render action: "new" }
@@ -177,16 +177,14 @@ class ListItemsController < ApplicationController
   def send_email_with_list_items_link
     unless params[:email].blank?
       emails = params[:email].scan(/[a-z0-9!\x23$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!\x23$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)
-      sent_list = ""      
+      sent_list = ""
       emails.each{|email|
         if sent_list.match(/;#{email};/miu) == nil
-        Mailer.send_list_items_link(current_user, email).deliver
-        sent_list += ";#{email};"
+          Mailer.delay.send_list_items_link(current_user, email)
+          sent_list += ";#{email};"
         end
-
       }
       redirect_to root_path, :notice => "list items has been sent..."
-      
     end
   end
 

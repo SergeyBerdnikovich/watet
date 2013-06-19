@@ -34,7 +34,7 @@
     <% end %>
   </div>
   <div class='span8'>
-    <h4><%= @user.try(:profile).try(:fname) %>'s list</h4>
+    <h4 style='margin-left:20px;'><%= @user.try(:profile).try(:fname) %>'s list</h4>
     <%= render :partial => 'list_items/front_end_form' if @new_list_item %>
     <span id="sortable">
       <% @list_items.each do |list_item| %>

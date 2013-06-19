@@ -18,13 +18,14 @@
  */
 
 .yellowbg {
-  background-color: #FFFF9B;
+  background-color: #FFFFCC;
 }
 
 body {
-  background-color: #FFFF9B;
+  background-color: #FFFFCC;
   height: 100%;
- width: 100%;
+  width: 100%;
+  font-family: Arial, serif;
 }
 
 ul {
@@ -88,7 +89,7 @@ span#hr hr {
 }
 #ddmenu #btn {
   padding: 1px 3px;
-  background-color: #FFFF9B;
+  background-color: #FFFFCC;
   border-radius: 25px;
 }
 #ddmenu {

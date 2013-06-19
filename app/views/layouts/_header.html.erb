@@ -6,12 +6,13 @@
     <li style='min-width:130px'>
       <a href="#" style='margin-right:20px' id='user'>Hi, <%= current_user.try(:profile).try(:fname) %>! <span id ='btn'><%= image_tag '/assets/maket/ddmenu_arrow.png' %></span></a>
       <ul>
-        <li id='first'><a href="<%= link_to_page('conacts') %>"><%= image_tag '/assets/maket/contacts.png' %> Contacts</a></li>
-        <li><a href="#"><%= image_tag '/assets/maket/applications.png' %> Applications</a></li>
-        <li><a href="#"><%= image_tag '/assets/maket/menu.png' %> Menu</a></li>
+        <li id='first'><a href="<%= user_path(current_user) if current_user %>"><%= image_tag '/assets/maket/menu.png' %> List</a></li>
         <li><a href="<%= profile_path(current_user.profile) %>"><%= image_tag '/assets/maket/profile.png' %> Profile</a></li>
         <li><a href="<%= settings_path %>"><%= image_tag '/assets/maket/settings.png' %> Settings</a></li>
-        <span id='hr'><hr /><span>
+        <li><a href="<%= link_to_page('conacts') %>"><%= image_tag '/assets/maket/contacts.png' %> Contact us</a></li>
+        <li><a href="<%= link_to_page('applications') %>"><%= image_tag '/assets/maket/applications.png' %> Applications</a></li>
+        <!-- <span id='hr' ></span> -->
+        <hr style='border-top:1px solid #999999;height:1px;'>
         <li><a href="<%= destroy_user_session_path %>"><%= image_tag '/assets/maket/sign.png' %> Sign out</a></li>
       </ul>
     </li>
@@ -21,7 +22,7 @@
       <a href="#" id='user'>Language <span id ='btn'><%= image_tag '/assets/maket/ddmenu_arrow.png' %></span></a>
       <ul>
         <li id='first'><a href="<%= authentications_path(:locale => :ru) %>"><img src="/assets/language/ru.png"> Язык</a></li>
-        <li><a href="<%= authentications_path(:locale => :en) %>"><img src="/assets/language/us.png"> Language</a></li>
+        <li><a href="<%= authentications_path(:locale => :en) %>"><img src="/assets/language/en.png"> Language</a></li>
         <li><a href="<%= authentications_path(:locale => :de) %>"><img src="/assets/language/de.png"> Sprache</a></li>
         <li><a href="<%= authentications_path(:locale => :it) %>"><img src="/assets/language/it.png"> Lingua</a></li>
         <li><a href="<%= authentications_path(:locale => :es) %>"><img src="/assets/language/es.png"> Idioma</a></li>
@@ -31,6 +32,6 @@
     </li>
   <% end %>
 </ul>
-<div id='avatar'><%= get_avatar if current_user %></div>
+<div id='avatar'><%= link_to get_avatar, user_path(current_user) if current_user %></div>
 <div class='clear'></div>
 <hr style='border-bottom:1px solid #999999;border-top:1px solid #999999;height:5px; margin:10px auto;' />
