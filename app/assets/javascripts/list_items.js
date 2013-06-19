@@ -36,7 +36,7 @@ $('.new_item').width(width)
 
 })
 
-$(window).resize()
+
 
 
 	$('.li').mouseenter(function(){
@@ -90,6 +90,7 @@ $(window).resize()
 	});
 
 
+setTimeout('$(window).resize()',500); //small fix 
 
 
 });
