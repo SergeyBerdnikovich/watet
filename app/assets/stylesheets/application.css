@@ -78,10 +78,12 @@ hr {
   color: #999999;
 }
 #user {
-  background-color: #EFEFB7;
   padding: 5px;
   border-radius: 8px;
   margin: 0;
+}
+#user:hover {
+  background-color: #EFEFB7;
 }
 span#hr hr {
   border: 1px solid #C3C3C3;

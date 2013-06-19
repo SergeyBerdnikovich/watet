@@ -74,13 +74,10 @@
           <div class='bordered'>
             <%= form_tag(send_list_items_path) do |f| %>
               <div class='row-fluid'>
-                <div class='span11'>
-                  <%= text_field_tag :email, "",:placeholder => t(:share_email)  ,:class => "noFocus transparent_bg send_email", :style => 'width:226px;' %>
-                <!-- <div class='span1'> -->
-                  <%= image_submit_tag("letter.png", :class => 'new_li_submit', :style => 'margin-top:2px;' ) %>
+                <div class='span12'>
+                  <p style='width:86%;float:left;'><%= text_field_tag :email, "",:placeholder => t(:share_email)  ,:class => "noFocus transparent_bg send_email", :style => 'width:90%;' %></p>
+                  <p style='margin:2px;'><%= image_submit_tag("letter.png", :class => 'new_li_submit' ) %></p>
                 </div>
-              <!-- </div> -->
-
               </div>
             <% end %>
           </div>
