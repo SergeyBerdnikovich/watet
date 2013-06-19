@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 <div class='row'>
 	<div class='span8 offset2'>
-<h1>
+<h1 style='text-align:center;margin-top:0px;'>
   <%= @static_page.title %>
 </h1>
-
-  <%== @static_page.content %>
-  <p>
+  <p style='text-align:center;'>
+    <%== @static_page.content %>
+  </p>
   	<center>
  <%= link_to_function image_tag("back.png"), "history.back()", :class => 'opcy'%>
 </center>
