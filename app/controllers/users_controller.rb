@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     end
 
   def show
-    if current_user.sign_in_count == 1
+    if current_user && current_user.sign_in_count == 1
       flash[:notice] = 'Please, remember that all your facebook and/or google friends will see your whole list!'
       flash[:notice2] = 'To add your google/facebook friends go to settings and login with another account.'
       current_user.update_attribute(:sign_in_count, 2)
