@@ -18,7 +18,7 @@ class ProfilesController < ApplicationController
     if params['redirect'] != 'root'
       redirect_to profile_path(@profile)
     else
-      redirect_to root_path()
+      redirect_to pages_welcome_path()
     end
   end
 end

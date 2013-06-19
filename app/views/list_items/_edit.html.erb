@@ -1,18 +1,18 @@
- 
+
  <%  list_item = @list_item  if @list_item %>
 
   <% if list_item %>
    <%=  form_for list_item, :id => "list_item_form", :remote => true, :html => {:'data-type' => 'json', :multipart => true} do |f|%>
   <div class='row-fluid noFocus'>
-  <div class='span9 list_item_title noFocus'>  
+  <div class='span9 list_item_title noFocus'>
   <%=  f.text_field :title, :value => list_item.title, :class => "noFocus", :id =>  'list_item_title'  %><br>
-  <font id='list_item_name' class=''><%= list_item.user.profile.fname %></font>
+  <!-- <font id='list_item_name' class=''><%= list_item.user.profile.fname %></font> -->
 </div>
 <div class='span3'>
   <div class='pull-right' id='buttons'>
-    
+
   <%= image_submit_tag("save.png") %>
- 
+
   <%= link_to ''.html_safe + image_tag("cancel.png"), list_item_path(list_item), :remote => true,
   :class => 'btn btn-link', :id => "close_#{list_item.id}" %>
 
@@ -36,14 +36,14 @@
 <div class='row-fluid '>
 	  <div id='list_item_images'>
 <iframe class='image_iframe' id='edit_images'src='<%= list_item_image_form_path(list_item)%>'></iframe>
-  
+
   </div>
   <% end %>
   <% end %>
 </div>
   <script>
 $(document).ready(function(){
-	
+
   	$('.edit_list_item') .bind('ajax:success', function(data, status, xhr) {
 
 $("#close_" + status.id).click()

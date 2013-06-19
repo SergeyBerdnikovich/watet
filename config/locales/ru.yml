@@ -1,0 +1,5 @@
+ru:
+  time:
+    formats:
+      default: "%d-%m-%Y %I:%M %P"
+  hello: "Превед Мир!"

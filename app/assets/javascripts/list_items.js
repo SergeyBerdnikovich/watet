@@ -16,28 +16,7 @@ $(this).attr('class', 'banner_active')
 			$(this).attr('class', 'banner')
 
 		})
-
-
-
-$(window).resize(function(){
-
-if ($('.new_item_container').position() != undefined){
-submit = $('.new_li_submit').width();
-container = $('.new_item_container').width();
-container_left = $('.new_item_container').position().left;
-
-width = container - submit - 10
-
-
-$('.new_item').width(width)
-// $('.new_li_submit').css('left',width + container_left + 9)
-
-}
-
-})
-
-
-
+$(window).resize()
 
 	$('.li').mouseenter(function(){
 

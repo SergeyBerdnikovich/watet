@@ -18,13 +18,14 @@
  */
 
 .yellowbg {
-  background-color: #FFFF9B;
+  background-color: #FFFFCC;
 }
 
 body {
-  background-color: #FFFF9B;
+  background-color: #FFFFCC;
   height: 100%;
- width: 100%;
+  width: 100%;
+  font-family: Arial, serif;
 }
 
 ul {
@@ -77,10 +78,12 @@ hr {
   color: #999999;
 }
 #user {
-  background-color: #EFEFB7;
   padding: 5px;
   border-radius: 8px;
   margin: 0;
+}
+#user:hover {
+  background-color: #EFEFB7;
 }
 span#hr hr {
   border: 1px solid #C3C3C3;
@@ -88,7 +91,7 @@ span#hr hr {
 }
 #ddmenu #btn {
   padding: 1px 3px;
-  background-color: #FFFF9B;
+  background-color: #FFFFCC;
   border-radius: 25px;
 }
 #ddmenu {

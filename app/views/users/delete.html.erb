@@ -8,11 +8,11 @@
 <div class='row' style='padding-top:20px'>
 	<p><br><p>
 	<div class='span4 offset2'>
-		<%= link_to "".html_safe + image_tag("back.png"), :back  %>
-	</div>	
+		<%= link_to image_tag("back.png"), :back, :class => 'opcy'  %>
+	</div>
 	<div class='span2'>
-		<%= link_to "".html_safe + image_tag("delete_button.png"), user_path(current_user), :method => :delete, :confirm => t(:confirm_acc_deletion) %>
-	</div>	
+		<%= link_to image_tag("delete_button.png"), user_path(current_user), :method => :delete, :confirm => t(:confirm_acc_deletion), :class => 'opcy' %>
+	</div>
 
 
 
