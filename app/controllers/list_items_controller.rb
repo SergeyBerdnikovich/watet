@@ -3,7 +3,7 @@ class ListItemsController < ApplicationController
   # GET /list_items.json
   before_filter :check_user, :only => [:edit, :update, :destroy]
   before_filter :check_current_user, :only => [:new, :create, :send_email_with_list_items_link]
-  before_filter :check_license, :only => [:index]
+  #before_filter :check_license, :only => [:index]
 
 
 
