@@ -1,4 +1,5 @@
 require 'update_friends_job'
+require 'google/api_client'
 class AuthenticationsController < ApplicationController
   after_filter :set_friends, :only => [:create]
   before_filter :check_license, :except => [:create]
@@ -16,37 +17,48 @@ class AuthenticationsController < ApplicationController
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     initial_session(omniauth) unless current_user
 
+    # client = Google::APIClient.new
+    # plus = client.discovered_api('plus')
+    # # Initialize OAuth 2.0 client
+    # client.authorization.client_id = '127127904403-qi1ted9kql4vtj04u9149lki8t841up4.apps.googleusercontent.com'
+    # client.authorization.client_secret = 'vEOmAOmfURqzpBsKd4aKEE1A'
+    # client.authorization.redirect_uri = 'http://localhost:3000/auth/google_oauth2/callback'
+    # client.authorization.scope = 'https://www.googleapis.com/auth/plus.me'
+    # # Request authorization
+    # redirect_uri = client.authorization.authorization_uri
+    # # Wait for authorization code then exchange for token
+    # client.authorization.code = params[:code]
+    # client.authorization.fetch_access_token!
+    # #client.authorization.access_token = omniauth['credentials']['token']
+    # # Get the list of people as JSON and return it.
+    # result = client.execute(plus.people.list, :collection => 'visible',
+    #                                           :userId => 'me')
+    # raise result.inspect.to_s
+
     if current_user
-      if  authentication #if such user with such SN already exists
-      flash[:error] = 'You have already register another account with that social network'
-      redirect_to authentications_path and return false
+      if authentication #if such user with such SN already exists
+        flash[:error] = 'You have already register another account with that social network'
+        redirect_to authentications_path and return false
       else
-      current_user.authentications.create(:provider => omniauth['provider'], :uid => omniauth['uid'])
-      flash[:notice] = 'Authentication sucessfull'
-      redirect_to authentications_path
+        current_user.authentications.create(:provider => omniauth['provider'], :uid => omniauth['uid'])
+        redirect_to authentications_path, :notice => 'Authentication sucessfull'
       end
     elsif authentication
       flash[:notice] = 'Signed in sucessfull'
       sign_in_and_redirect(:user, authentication.user)
     else
       if User.find_by_email(omniauth['info']['email'])
-       # drop_session
-       # redirect_to authentications_path, :notice => 'This email is already used by someone, try to go through another social network...'
-         user = User.new(:email => omniauth['provider'] +":"+omniauth['info']['email'])
-
+        user = User.new(:email => omniauth['provider'] + ":" +omniauth['info']['email'])
       else
-      user = User.new(:email => omniauth['info']['email'])
+        user = User.new(:email => omniauth['info']['email'])
       end
-    #  else
-        initial_session(omniauth)
-        #user = User.new(:email => omniauth['info']['email'])
-        user.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
-        set_profile(user, omniauth)
-        user.save
-        user.save(:validate => false)
-        flash[:notice] = 'Signed in sucessfull'
-        sign_in_and_redirect(:user, user)
-    #  end
+      initial_session(omniauth)
+      user.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+      set_profile(user, omniauth)
+      user.save
+      user.save(:validate => false)
+      flash[:notice] = 'Signed in sucessfull'
+      sign_in_and_redirect(:user, user)
     end
   end
 
@@ -70,14 +82,8 @@ class AuthenticationsController < ApplicationController
 
   def initial_session(omniauth)
     session[:soc_token] = omniauth['credentials']['token']
-     session[:soc_provider] = omniauth['provider']
+    session[:soc_provider] = omniauth['provider']
     session[:soc_uid] = omniauth['uid']
-  end
-
-  def drop_session
-    session[:soc_token] = nil
-    session[:soc_provider] = nil
-    session[:soc_uid] = nil
   end
 
   def set_profile(user, omniauth)
@@ -103,3 +109,4 @@ class AuthenticationsController < ApplicationController
     end
   end
 end
+
