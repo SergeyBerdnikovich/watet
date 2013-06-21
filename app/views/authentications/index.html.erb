@@ -28,7 +28,7 @@
       </a>
     </div>
   <% end %>
-  <% if has_not_account? :google %>
+  <% if has_not_account? :google_oauth2 %>
     <div class='soc_provider'>
       <a href="/auth/google_oauth2" class='auth_provider'>
         <%= image_tag "/assets/google_64.png", :size => "64x64", :alt => "Google" %><br />

@@ -13,6 +13,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-google'
 gem 'fb_graph'
 gem "omniauth-google-oauth2"
+gem 'google-api-client'
 gem 'delayed_job_active_record'
 gem "friendly_id"
 gem 'activeadmin'

@@ -5,8 +5,6 @@ class ListItemsController < ApplicationController
   before_filter :check_current_user, :only => [:new, :create, :send_email_with_list_items_link]
   #before_filter :check_license, :only => [:index]
 
-
-
   def index
     if user_signed_in?
       redirect_to user_url(current_user)
