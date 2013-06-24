@@ -24,7 +24,7 @@ Tet::Application.routes.draw do
 
     resources :profiles
 
-   
+
 
     resources :authentications#, :only => [:index]
 

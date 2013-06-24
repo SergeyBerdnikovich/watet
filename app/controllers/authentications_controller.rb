@@ -16,7 +16,7 @@ class AuthenticationsController < ApplicationController
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     initial_session(omniauth) unless current_user
-   
+
     if current_user
       if authentication #if such user with such SN already exists
         flash[:error] = 'You have already register another account with that social network'
@@ -59,7 +59,7 @@ class AuthenticationsController < ApplicationController
   private
 
   def set_friends
-    Delayed::Job.enqueue(UpdateFriendsJob.new(current_user, session[:soc_token], session[:soc_uid],session[:soc_provider]))
+    Delayed::Job.enqueue(UpdateFriendsJob.new(current_user, session[:soc_token], session[:soc_uid]))
   end
 
   def initial_session(omniauth)
