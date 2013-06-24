@@ -24,7 +24,7 @@ Tet::Application.routes.draw do
 
     resources :profiles
 
-    match '/auth/:provider/callback' => 'authentications#create'
+   
 
     resources :authentications#, :only => [:index]
 
@@ -42,4 +42,6 @@ Tet::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
+   match '/auth/:provider/callback' => 'authentications#create'
 end

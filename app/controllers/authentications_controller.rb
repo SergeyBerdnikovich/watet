@@ -16,25 +16,7 @@ class AuthenticationsController < ApplicationController
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     initial_session(omniauth) unless current_user
-
-    # client = Google::APIClient.new
-    # plus = client.discovered_api('plus')
-    # # Initialize OAuth 2.0 client
-    # client.authorization.client_id = '127127904403-qi1ted9kql4vtj04u9149lki8t841up4.apps.googleusercontent.com'
-    # client.authorization.client_secret = 'vEOmAOmfURqzpBsKd4aKEE1A'
-    # client.authorization.redirect_uri = 'http://localhost:3000/auth/google_oauth2/callback'
-    # client.authorization.scope = 'https://www.googleapis.com/auth/plus.me'
-    # # Request authorization
-    # redirect_uri = client.authorization.authorization_uri
-    # # Wait for authorization code then exchange for token
-    # client.authorization.code = params[:code]
-    # client.authorization.fetch_access_token!
-    # #client.authorization.access_token = omniauth['credentials']['token']
-    # # Get the list of people as JSON and return it.
-    # result = client.execute(plus.people.list, :collection => 'visible',
-    #                                           :userId => 'me')
-    # raise result.inspect.to_s
-
+   
     if current_user
       if authentication #if such user with such SN already exists
         flash[:error] = 'You have already register another account with that social network'
@@ -77,7 +59,7 @@ class AuthenticationsController < ApplicationController
   private
 
   def set_friends
-    Delayed::Job.enqueue(UpdateFriendsJob.new(current_user, session[:soc_token], session[:soc_uid])) if current_user && session[:soc_provider] == 'facebook'
+    Delayed::Job.enqueue(UpdateFriendsJob.new(current_user, session[:soc_token], session[:soc_uid],session[:soc_provider]))
   end
 
   def initial_session(omniauth)

@@ -7,18 +7,28 @@
   font-family: "ChaparralW08-BoldItSubh";
   src: url("http://fast.fonts.com/dv2/2/132815b7-e6fb-480c-9e21-6ac5aa87be55.eot?d44f19a684109620e4841471a390e818db723128aa5b82b5d2541118d00375fb4223357058fff81140d7789249dc5f67b961c454f9363b9fa75ea0a691500a49f0baef224aef3ae1c0c7c3a6c67211c2c5d696f7&amp;projectid=74f39a9d-a5dc-405f-9690-1c1fd4590ae4#iefix") format("embedded-opentype"), url("http://fast.fonts.com/dv2/3/c9b158cc-4aa5-4c3b-b91f-c68cc30349e0.woff?d44f19a684109620e4841471a390e818db723128aa5b82b5d2541118d00375fb4223357058fff81140d7789249dc5f67b961c454f9363b9fa75ea0a691500a49f0baef224aef3ae1c0c7c3a6c67211c2c5d696f7&amp;projectid=74f39a9d-a5dc-405f-9690-1c1fd4590ae4") format("woff"), url("http://fast.fonts.com/dv2/1/4eaccce4-4c3e-4675-bf82-8381ef4223af.ttf?d44f19a684109620e4841471a390e818db723128aa5b82b5d2541118d00375fb4223357058fff81140d7789249dc5f67b961c454f9363b9fa75ea0a691500a49f0baef224aef3ae1c0c7c3a6c67211c2c5d696f7&amp;projectid=74f39a9d-a5dc-405f-9690-1c1fd4590ae4") format("truetype"), url("http://fast.fonts.com/dv2/11/8378b11f-5a20-47c1-bf34-557fd71ea7fc.svg?d44f19a684109620e4841471a390e818db723128aa5b82b5d2541118d00375fb4223357058fff81140d7789249dc5f67b961c454f9363b9fa75ea0a691500a49f0baef224aef3ae1c0c7c3a6c67211c2c5d696f7&amp;projectid=74f39a9d-a5dc-405f-9690-1c1fd4590ae4#svgFontName") format("svg");
 }
+
+@import url(http://fonts.googleapis.com/css?family=Coustard:400,900);
+@import url(http://fonts.googleapis.com/css?family=Sintony:400,700);
+@import url(http://fonts.googleapis.com/css?family=Raleway:900);
+
 .welcome_img {
   width: 100%;
   height: auto;
 }
 
 .header{
-  font-size:14px
+  font-size:15px;
+  font-weight: 900;
+font-family: 'Coustard', serif;
 }
 
 .header_big{
   margin-left:19px;
-  font-size:18px;
+   font-weight: 900;
+  font-size:28px !important;
+font-family: 'Raleway', sans-serif;
+font-style:normal;
 }
 
 p#welcome {
