@@ -29,6 +29,7 @@ Tet::Application.routes.draw do
     resources :authentications#, :only => [:index]
 
     get "pages/welcome"
+    get "pages/application"
 
     devise_for :users, :skip => [:sessions, :passwords, :registrations] do
       ActiveAdmin.routes(self)

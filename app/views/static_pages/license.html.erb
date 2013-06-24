@@ -1,6 +1,5 @@
-<div style='margin:20px;'>
+<div style="margin:20px;">
   <%= show_page('license', true,true).html_safe %>
-
   <%= form_for @profile, :url => profile_path(@profile) , :_method => :put do |f| %>
     <div class='row' style='padding-top:20px;'>
       <input type='hidden' name ='redirect' value="root">
@@ -21,3 +20,4 @@
       </p>
   <% end %>
     </div>
+</div>
