@@ -19,19 +19,18 @@
     <div id='content' class='span12'>
       <% flash.each do |key, msg| %>
       <div class="alert">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
         <%= content_tag :div, msg, :id => key %>
       </div>
-      <% end %>   
+      <% end %>
       <%= yield %>
     </div>
-</div> 
+</div>
 <div class="row yellowbg">
-    <div id='footer'  class='span12'> 
+    <div id='footer' class='span12'>
       <%= render 'layouts/footer' %>
     </div>
   </div>
 </div>
 </body>
 </html>
-  

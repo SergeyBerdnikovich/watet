@@ -77,6 +77,7 @@ class ListItemsController < ApplicationController
   # POST /list_items
   # POST /list_items.json
   def create
+    redirect_to user_path(current_user), :notice => "title can't be blank..." and return nil if params[:list_item][:title].blank?
     # params[:project][:image] ||= {}
     images_arr = params[:images]
     params[:list_item].delete(:image)
@@ -94,13 +95,10 @@ class ListItemsController < ApplicationController
     @image = Image.new(images_arr)
     @list_item.images << @image
 
-
     respond_to do |format|
       if @list_item.save
-
-        format.html {
-          session[:open_edit] = @list_item.id #to open new list item in edit mode in fronend after creation
-          redirect_to user_url(current_user) }
+        format.html { session[:open_edit] = @list_item.id #to open new list item in edit mode in fronend after creation
+                      redirect_to user_url(current_user) }
         format.json { render json: @list_item, status: :created, location: @list_item }
       else
         format.html { render action: "new" }
@@ -173,6 +171,7 @@ class ListItemsController < ApplicationController
   end
 
   def send_email_with_list_items_link
+    redirect_to user_path(current_user), :notice => "email can't be blank..." and return nil if params[:email].blank?
     unless params[:email].blank?
       emails = params[:email].scan(/[a-z0-9!\x23$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!\x23$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)
       sent_list = ""
@@ -187,8 +186,6 @@ class ListItemsController < ApplicationController
   end
 
   private
-
-
 
   def check_user
     list_item = ListItem.find(params[:id])
