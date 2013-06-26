@@ -15,8 +15,8 @@ class ProfilesController < ApplicationController
     @profile = current_user.profile
 
     @profile.update_attributes(params[:profile])
-    if params['redirect'] != 'root'
-      redirect_to profile_path(@profile)
+    if params['redirect'] == 'root'
+      redirect_to root_path
     else
       redirect_to pages_welcome_path()
     end
