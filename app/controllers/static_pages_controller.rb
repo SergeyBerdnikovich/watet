@@ -24,6 +24,10 @@ class StaticPagesController < ApplicationController
 
   def license
     @profile = current_user.profile
+    if current_user.sign_in_count == 1
+      flash[:notice] == nil
+    end
+    redirect_to root_path if @profile.agreed.present?
   end
 
   # GET /static_pages/new

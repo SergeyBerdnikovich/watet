@@ -23,6 +23,13 @@ class UsersController < ApplicationController
     end
 
   def show
+    if current_user && current_user.slug == params[:id]
+      if current_user.sign_in_count == 1
+        redirect_to license_path and return false unless current_user.profile.agreed?
+      else
+        redirect_to license_path, :alert => t(:tc_need_agree) and return false unless current_user.profile.agreed?
+      end
+    end
     if current_user && current_user.sign_in_count == 1
       flash[:notice] = 'Please, remember that all your facebook and/or google friends will see your whole list!'
       flash[:notice2] = 'To add your google/facebook friends go to settings and login with another account.'

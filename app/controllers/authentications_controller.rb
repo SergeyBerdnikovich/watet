@@ -15,7 +15,7 @@ class AuthenticationsController < ApplicationController
   def create
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
-    initial_session(omniauth) unless current_user
+    initial_session(omniauth)
 
     if current_user
       if authentication #if such user with such SN already exists
@@ -34,7 +34,7 @@ class AuthenticationsController < ApplicationController
       else
         user = User.new(:email => omniauth['info']['email'])
       end
-      initial_session(omniauth)
+      #initial_session(omniauth)
       user.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
       set_profile(user, omniauth)
       user.save
