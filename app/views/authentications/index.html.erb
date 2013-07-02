@@ -1,7 +1,7 @@
 <div id='setting_authentications'>
   <% if @authentications %>
     <% unless @authentications.empty? %>
-      <p><strong>You can sign in to this account using:</strong></p>
+      <p><strong>At the moment you can sign in using:</strong></p>
       <div class='authentications'>
         <% @authentications.each do |authentication| %>
           <div class='authentication'>
@@ -16,7 +16,7 @@
         <div class='clear'></div>
       </div>
     <% end %>
-    <p><strong>Add another services to sign in with:</strong></p>
+    <p><strong>Add another service to add your friends and to sing in to this account with multiple services:</strong></p>
   <% else %>
     <p><strong>Sign in / Sign up through one of these services:</strong></p>
   <% end %>
@@ -41,10 +41,15 @@
   <% if current_user %>
     <p><br><p>
     <h4>Delete your account</h4>
-    Delete your account and all associated data -  <%#= link_to image_tag("delete_button.png"), user_delete_path(current_user), :class => 'opcy' %><%= link_to image_tag("delete_button.png"), user_path(current_user), :method => :delete, :confirm => t(:confirm_acc_deletion), :class => 'opcy' %>
+    To delete your account and all associated data press Delete below below. The data can not be restored:<p><br>
+  <%#= link_to image_tag("delete_button.png"), user_delete_path(current_user), :class => 'opcy' %><%= link_to image_tag("delete_button.png"), user_path(current_user), :method => :delete, :confirm => t(:confirm_acc_deletion), :class => 'opcy' %>
   <% end %>
 </div>
 <div id='setting_language'>
+  <br>
+  <span id='select_language'>
+ <strong>Select the language:</strong>
+  </span>
   <% if current_user %>
     <ul id='ddmenu'>
       <li style='min-width:130px'>

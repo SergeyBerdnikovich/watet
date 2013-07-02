@@ -1,8 +1,8 @@
 <p style="color:#808080;font: italic bold 200% 'ChaparralPro-BoldIt', 'ChaparralPro-Regular','ChaparralProBoldDisplay','ChaparralW08-BoldItSubh', serif;text-align:center;">
-  <%= link_to 'Sign in/Sign up', authentications_path, :style => 'color:#808080;' %> with: google/facebook</p>
+  <%= link_to 'Sign in/Sign up', authentications_path, :style => 'color:#808080;' %> <%= t(:with) %>: google/facebook</p>
 <p id='welcome'>
-  <span class='header_big'>1.</span><span class='header'> Make a list of what you want to have</span>
-  <span class='header_big'>2.</span><span class='header'> Let others know what you like</span>
-  <span class='header_big'>3.</span><span class='header'> Make a gift from friend's list</span>
+  <span class='header_big'>1.</span><span class='header'> <%= t(:main_page_header_1)%></span>
+  <span class='header_big'>2.</span><span class='header'> <%= t(:main_page_header_2)%></span>
+  <span class='header_big'>3.</span><span class='header'> <%= t(:main_page_header_3)%></span>
   <%= image_tag "welcome.png", :class => 'welcome_img' %>
 </p>

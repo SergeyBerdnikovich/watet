@@ -1,8 +1,15 @@
+<div class='row'><div class='span10 offset1'><span class='header_big app_page_header'><center><%= t(:app_page_header) %></center></span></div></div>
 <div style='float:left; width:20%;'>
   <%= image_tag '/assets/phone.png' %>
-  <p align='center'><a href="#">Mobile Application</a></p>
+  <br><p align='center'><strong>Mobile Application:</strong></p>
+  <a href="#" >iOS</a><br>
+<a href="#" >Android</a><br>
 </div>
+
+
 <div style='float:right; width:63%;'>
   <%= image_tag '/assets/browser.png', :style => 'float:right;width:100%;' %>
-  <p align='center'><a href="#">Browser Plugin</a></p>
+  <br><p align='center'><strong>Browser plugin:</strong></p>
+  <a href="<%= link_to_page(:under_dev)%>" >Chrome</a><br>
+ <a href="#" >Firefox</a><br>
 </div>

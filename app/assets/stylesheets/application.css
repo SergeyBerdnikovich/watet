@@ -42,6 +42,34 @@ margin: 0;
 
 }
 
+ a.app_link{
+      color: #0088ee !important;
+       text-decoration: underline !important;
+      &:hover {
+         color: #0088ee !important;
+        text-decoration: underline !important;
+       }
+     }
+
+
+.app_page_header{
+ line-height:110%;
+
+  text-align: center;
+   
+}
+
+#setting_language{
+  margin-top: -20px;
+  width: 300px;
+}
+#select_language{
+  padding-top:7px;
+
+  margin-top: 7px;
+  display:inline-block;
+}
+
 .container {
   margin-left: auto;
   margin-right: auto;

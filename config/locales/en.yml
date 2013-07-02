@@ -16,3 +16,8 @@ en:
   confirm_acc_deletion: "Are you sure to permanently delete ALL data and your account?"
   tc_need_agree: "In order to use our service please accept Terms And Conditions"
   auth_failed: "Authorization failed. Please try once again."
+  main_page_header_1: "Make a list of what you want to have"
+  main_page_header_2: "Let others know what you like"
+  main_page_header_3: "Make a gift from friend's list"
+  with: "with"
+  app_page_header: "Add items to your list using your phone, when shopping or from your browser when browsing!"

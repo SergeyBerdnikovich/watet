@@ -474,3 +474,4 @@ nil
 {"order"=>["101", "100", "99", "102", "98", "97", "92", "91", "90", "89", "88", "87"], "controller"=>"list_items", "action"=>"sort"}
 {"order"=>["94"], "controller"=>"list_items", "action"=>"sort"}
 {"order"=>["94"], "controller"=>"list_items", "action"=>"sort"}
+{"order"=>["113", "112", "111", "110", "108", "109", "107"], "controller"=>"list_items", "action"=>"sort"}
