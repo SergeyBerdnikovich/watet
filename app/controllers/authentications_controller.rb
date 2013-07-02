@@ -19,8 +19,10 @@ class AuthenticationsController < ApplicationController
 
     if current_user
       if authentication #if such user with such SN already exists
-        flash[:error] = 'You have already register another account with that social network'
-        redirect_to authentications_path and return false
+        # flash[:error] = 'You have already register another account with that social network'
+        # redirect_to authentications_path and return false
+        accounts_merge(authentication)
+        sign_in_and_redirect(:user, authentication.user)
       else
         current_user.authentications.create(:provider => omniauth['provider'], :uid => omniauth['uid'])
         redirect_to authentications_path, :notice => 'Authentication sucessfull'
@@ -89,6 +91,18 @@ class AuthenticationsController < ApplicationController
                          :site_link => omniauth['extra']['raw_info']['link'],
                          :agreed => false)
     end
+  end
+
+  def accounts_merge(authentication)
+    id = authentication.user.id
+    authentication.user.list_items.each do |list_item|
+      list_item.update_attribute(:user_id, current_user.id)
+    end
+    authentication.friends.each do |friend|
+      friend.destroy
+    end
+    authentication.update_attribute(:user_id, current_user.id)
+    User.find(id).destroy
   end
 end
 
