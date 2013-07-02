@@ -1,5 +1,9 @@
 <p style="color:#808080;font: italic bold 200% 'ChaparralPro-BoldIt', 'ChaparralPro-Regular','ChaparralProBoldDisplay','ChaparralW08-BoldItSubh', serif;text-align:center;">
-  <%= link_to 'Sign in/Sign up', authentications_path, :style => 'color:#808080;' %> <%= t(:with) %>: google/facebook</p>
+  <%#= link_to 'Sign in/Sign up', authentications_path, :style => 'color:#808080;' %> <%#= t(:with) %><!-- : google/facebook</p> -->
+  <%= link_to 'Sign in/Sign up', authentications_path, :style => 'color:#808080;' %> <%= t(:with) %>:
+  <a href="/auth/facebook" class='auth_provider'><%= image_tag "/assets/facebook_64.png", :size => "35x35", :alt => "Facebook" %></a>
+  <a href="/auth/google_oauth2" class='auth_provider'><%= image_tag "/assets/google_64.png", :size => "35x35", :alt => "Google" %></a>
+</p>
 <p id='welcome'>
   <span class='header_big'>1.</span><span class='header'> <%= t(:main_page_header_1)%></span>
   <span class='header_big'>2.</span><span class='header'> <%= t(:main_page_header_2)%></span>

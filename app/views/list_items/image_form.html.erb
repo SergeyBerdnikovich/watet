@@ -5,11 +5,16 @@
 		<% if image.image.url.index('missing.png') == nil %>
 		<div class='image_div'>
 
-		<center><div class='image_edit_div'><%=  image_tag(image.image.url(:thumb), :class => 'image_edit',:id => "image", :image_id => image.id) %></div></center>
+		<center>
+			<div class='image_edit_div'>
+				<%#=  image_tag(image.image.url(:thumb), :class => 'image_edit',:id => "image", :image_id => image.id) %>
+				<%= link_to image_tag(image.image.url(:thumb), :class => 'image_edit',:id => "image", :image_id => image.id), image.image.url, :target => '_blank' %>
+			</div>
+		</center>
 		<div class='delete_div' image_id=<%= image.id %> ><nobr>Delete <%= image_tag("del.png", :class => 'del_img') %></nobr>
 		</div>
 
-	
+
 		</div>
 				<span style='display:none'><%= button_to "del", list_item_delete_image_path(@list_item,:image_id => image.id),:method => :delete, :id => "delete_#{image.id}" ,  :confirm => 'Are you sure?' ,
 		:class => 'btn btn-link',:style => 'display:none' %></span>
@@ -33,7 +38,7 @@
 				<% end %>
 
 				<% end %>
-	
+
 
 				<script>
 

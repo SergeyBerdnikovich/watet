@@ -20,11 +20,7 @@
       <% end %>
     </div><br>
     <span class='pull-right'>
-      <% if current_user && params[:id] == current_user.slug %>
-        <font id='list_item_date'><%= l list_item.created_at %></font>
-      <% else %>
-        <font id='list_item_date' style='margin-left: -137px;'><%= l list_item.created_at %></font>
-      <% end %>
+      <font id='list_item_date'><%= l list_item.created_at %></font>
     </span>
   </div>
 </div>
@@ -40,7 +36,11 @@
     <div class='row-fluid toggler'>
       <span id='list_item_images'>
         <% list_item.images.each do |image| %>
-          <%= link_to image_tag(image.image.url(:thumb)), list_item_image_path(image.list_item_id, :id=>image.id), :remote => true if image.image.url.index('missing.png') == nil %>
+          <% if image.image.url.index('missing.png') == nil %>
+            <div class='image_show'>
+              <%= link_to image_tag(image.image.url(:thumb)), list_item_image_path(image.list_item_id, :id=>image.id), :remote => true %>
+            </div>
+          <% end %>
         <% end %>
       </span>
     </div>
@@ -53,3 +53,20 @@ $('.deleter').bind('ajax:success', function() {
   $('#'+list_item_id).remove();
 });
 </script>
+<style type="text/css">
+  .image_show {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+  }
+  .image_show img {
+    min-height: 60px;
+    min-width: 60px;
+  }
+  <% unless current_user && current_user.slug == params[:id] %>
+    .list_item_hover #list_item_date {
+      margin-left: -137px;
+    }
+  <% end %>
+</style>

@@ -7,7 +7,7 @@
       <a href="#" style='margin-right:20px' id='user'>Hi, <%= current_user.try(:profile).try(:fname) %>! <span id ='btn'><%= image_tag '/assets/maket/ddmenu_arrow.png' %></span></a>
       <ul>
         <li id='first'><a href="<%= user_path(current_user) if current_user %>"><%= image_tag '/assets/maket/menu.png' %> List</a></li>
-        <li><a href="<%= profile_path(current_user.profile) %>"><%= image_tag '/assets/maket/profile.png' %> Profile</a></li>
+        <!-- <li><a href="<%#= profile_path(current_user.profile) %>"><%#= image_tag '/assets/maket/profile.png' %> Profile</a></li> -->
         <li><a href="<%= settings_path %>"><%= image_tag '/assets/maket/settings.png' %> Settings</a></li>
         <li><a href="<%= link_to_page('conacts') %>"><%= image_tag '/assets/maket/contacts.png' %> Contact us</a></li>
         <li><a href="<%= pages_application_path %>"><%= image_tag '/assets/maket/applications.png' %> Applications</a></li>
@@ -21,13 +21,13 @@
     <li style='min-width:130px'>
       <a href="#" id='user'>Language <span id ='btn'><%= image_tag '/assets/maket/ddmenu_arrow.png' %></span></a>
       <ul>
-        <li id='first'><a href="<%= authentications_path(:locale => :ru) %>"><img src="/assets/flags/ru.png" width='30px;'> Язык</a></li>
-        <li><a href="<%= authentications_path(:locale => :en) %>"><img src="/assets/flags/en.png" width='30px;'> Language</a></li>
-        <li><a href="<%= authentications_path(:locale => :de) %>"><img src="/assets/flags/de.png" width='30px;'> Sprache</a></li>
-        <li><a href="<%= authentications_path(:locale => :it) %>"><img src="/assets/flags/it.png" width='30px;'> Lingua</a></li>
-        <li><a href="<%= authentications_path(:locale => :es) %>"><img src="/assets/flags/es.png" width='30px;'> Idioma</a></li>
-        <li><a href="<%= authentications_path(:locale => :cn) %>"><img src="/assets/flags/ch.png" width='30px;'> 語</a></li>
-        <li><a href="<%= authentications_path(:locale => :pl) %>"><img src="/assets/flags/pl.png" width='30px;'> Język</a></li>
+        <li id='first'><a href="<%= pages_welcome_path(:locale => :ru) %>"><img src="/assets/flags/ru.png" width='30px;'> Язык</a></li>
+        <li><a href="<%= pages_welcome_path(:locale => :en) %>"><img src="/assets/flags/en.png" width='30px;'> Language</a></li>
+        <li><a href="<%= pages_welcome_path(:locale => :de) %>"><img src="/assets/flags/de.png" width='30px;'> Sprache</a></li>
+        <li><a href="<%= pages_welcome_path(:locale => :it) %>"><img src="/assets/flags/it.png" width='30px;'> Lingua</a></li>
+        <li><a href="<%= pages_welcome_path(:locale => :es) %>"><img src="/assets/flags/es.png" width='30px;'> Idioma</a></li>
+        <li><a href="<%= pages_welcome_path(:locale => :cn) %>"><img src="/assets/flags/ch.png" width='30px;'> 語</a></li>
+        <li><a href="<%= pages_welcome_path(:locale => :pl) %>"><img src="/assets/flags/pl.png" width='30px;'> Język</a></li>
       </ul>
     </li>
   <% end %>

@@ -53,24 +53,10 @@
         </div>
       <% end %>
     </span>
-  </div>
-  <div id='friends' class='span2'>
-    <% @friends.each do |friend| %>
-      <a href="<%= user_path(friend.user) %>" id='<%= friend.id %>'>
-        <p>
-          <span class='friend_name'><%= friend.name %></span><br />
-          <span class='friend_item'>
-            <% last_title = friend.user.try(:list_items).order('priority DESC').limit(1).first.try(:title) %>
-            <%= truncate( last_title, :length => 150) if last_title %>
-          </span>
-        </p>
-      </a>
-    <% end %>
-  </div>
-  <% if @new_list_item %>
-    <% if @list_items.size != 0 %>
-      <div class="row-fluid">
-        <div id='banners' class='span3 offset2' style='margin-left: 230px;'>
+
+    <% if @new_list_item && @list_items.present? %>
+      <!-- <div class="row-fluid"> -->
+        <div id='email' class='span3 offset2' style='margin:0px auto;float:none;padding-top:20px;'>
           <div class='bordered'>
             <%= form_tag(send_list_items_path) do |f| %>
               <div class='row-fluid'>
@@ -82,8 +68,22 @@
             <% end %>
           </div>
         </div>
-      </div>
+      <!-- </div> -->
     <% end %>
-  <% end %>
+  </div>
+  <div id='friends' class='span2'>
+    <% @friends.each do |friend| %>
+      <a href="<%= user_path(friend.user) %>" id='<%= friend.id %>'>
+        <p>
+          <span class='friend_name'><%= friend.name %></span><br />
+          <span class='friend_item'>
+            <% last_title = friend.user.try(:list_items).order('priority DESC').limit(1).first.try(:title) %>
+            <%= truncate( last_title, :length => 25) if last_title %>
+          </span>
+        </p>
+      </a>
+    <% end %>
+  </div>
+
 </div>
 

@@ -3,5 +3,6 @@ class PagesController < ApplicationController
   end
 
   def application
+    flash[:notice] = 'applications are under development - coming soon!'
   end
 end
