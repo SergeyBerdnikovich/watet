@@ -44,21 +44,25 @@
   <script>
 $(document).ready(function(){
 
-  	$('.edit_list_item') .bind('ajax:success', function(data, status, xhr) {
 
-$("#close_" + status.id).click()
-
+  $('.edit_list_item') .bind('ajax:success', function(data, status, xhr) {
+    $("#close_" + status.id).click()
 	})
-
-   $('#edit_images').load(function(){
-     $("#edit_images").contents().find("#image").click(function(){
-// alert('works!')
-
-     });
-   });
-
-
-
+  $('#edit_images').load(function(){
+    $("#edit_images").contents().find(".img_edit").each(function() {
+      $(this).click(function(){
+        var img_src = $(this).attr('href');
+        $('body').append("<div class=\'galery_div\'>\n  <span class=\'galery_image_div\'>\n<img alt=\"_qdxvjh4tdg\" class=\"galery_image\" src=\"" + img_src + "\" />\n<\/span>\n<\/div>")
+        var height = $(window).height();
+        var width = $(window).width();
+        $('.galery_image').css('max-height', height * 0.9);
+        $('.galery_image').css('max-width', width * 0.9);
+        $('.galery_image_div').click(function(){
+          $('.galery_div').remove();
+        })
+      });
+    });
+  });
 })
 
 

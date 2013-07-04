@@ -407,7 +407,7 @@ color: black;
 }  /* selected link */
 
 .galery_div{
-	position:absolute;
+	position: fixed;
 	  display: table;
   	width:100%;
 	top:0px;
@@ -455,4 +455,5 @@ div.ui-state-default.draggable:first-child .hr {
 }
 #list_item_title {
   line-height: 20px;
+  letter-spacing: 1px;
 }
