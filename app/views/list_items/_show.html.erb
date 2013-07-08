@@ -20,14 +20,14 @@
                                                                                                                                         :list_item_id => list_item.id %>
       <%# end %>
     </div><br>
-    <span class='pull-right'>
-      <font id='list_item_date'><%= l list_item.created_at %></font>
-    </span>
+    <span class='pull-right toggler'>
+      <font id='list_item_date toggler'><%= l list_item.created_at %></font>
+    </span> 
   </div>
 </div>
-<div class='row-fluid toggler'>
-  <div class='span11 toggler'>
-    <div id='list_item_des'>
+<div class='row-fluid list_item_des_container nosort'>
+  <div class='span11 nosort'>
+    <div id='list_item_des' class='nosort'>
       <%#= list_item.description %>
       <%== list_item_desc(list_item) %>
     </div>
@@ -35,7 +35,7 @@
 </div>
 <% if list_item.images %>
   <% if list_item.images.size != 0 %>
-    <div class='row-fluid toggler'>
+    <div class='row-fluid image_block_container toggler' style='height:70px'>
       <span id=''>
         <% list_item.images.each do |image| %>
           <% if image.image.url.index('missing.png') == nil %>

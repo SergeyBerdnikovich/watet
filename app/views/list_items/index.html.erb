@@ -3,9 +3,11 @@
   <script>
   $(function() {
     $("#sortable").sortable({
+      start: function(event,ui){
+        drag_started = true;
+      },
       stop: function( event, ui ) {
         var sortedIDs = $( "#sortable" ).sortable( "toArray" );
-
         var request = $.ajax({
           type: "GET",
           url: "http://watet.dvporg.com/list_items/sort",
@@ -22,8 +24,13 @@
       }
 
     });
-    $( "#sortable" ).disableSelection();
+    //$( "#sortable" ).disableSelection();
+          $( "#sortable" ).sortable({ revert: true,
+    items: "> *:not(.nosort)",  handle: '> div > *:not(.nosort)'});
+
   });
+
+
   </script>
 <% end %>
 
@@ -36,9 +43,9 @@
   <div class='span8'>
     <h4 style='margin-left:20px;'><%= @user.try(:profile).try(:fname) %>'s list</h4>
     <%= render :partial => 'list_items/front_end_form' if @new_list_item %>
-    <span id="sortable2">
+    <span id="sortable">
       <% @list_items.each do |list_item| %>
-        <div class="ui-state-default draggable" id='<%= list_item.id %>'>
+        <div class="ui-state-default" id='<%= list_item.id %>'>
           <div class='hr'></div>
           <% if list_item.id != session[:open_edit] %>
             <div class='list_item li' id='li<%= list_item.id %>'>
