@@ -59,4 +59,14 @@ module ApplicationHelper
       end
     end
   end
+
+  def banner_image_url(banner)
+    if banner.url.present? && banner.url =~ /^http:\/\/[a-z1-9.\/@A-Z?=]+/
+      link_to image_tag(banner.image), banner.url, :class => "banner_image"
+    elsif banner.url.present?
+      link_to image_tag(banner.image), 'http://' + banner.url, :class => "banner_image"
+    else
+      image_tag(banner.image)
+    end
+  end
 end
