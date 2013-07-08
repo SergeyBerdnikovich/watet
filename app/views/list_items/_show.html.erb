@@ -2,7 +2,7 @@
 <%#  new_list_item = @new_list_item  if @new_list_item %>
 <div class='row-fluid'>
   <div class='span9 toggler'>
-    <p id='list_item_title' class='toggler' ><%= list_item_title_url(list_item) %></p>
+    <p id='list_item_title' class='toggler draggable' ><%= list_item_title_url(list_item) %></p>
     <!-- <font id='list_item_name' class='toggler'><%#= list_item.user.profile.fname %></font><br /><br /> -->
     <font id='list_item_url' class='toggler'><%= list_item_url(list_item) %></font>
   </div>
@@ -20,8 +20,8 @@
                                                                                                                                         :list_item_id => list_item.id %>
       <%# end %>
     </div><br>
-    <span class='pull-right'>
-      <font id='list_item_date'><%= l list_item.created_at %></font>
+    <span class='pull-right toggler'>
+      <font id='list_item_date' class='toggler'><%= l list_item.created_at %></font>
     </span>
   </div>
 </div>

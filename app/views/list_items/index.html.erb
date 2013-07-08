@@ -30,7 +30,7 @@
 <div class="row">
   <div id='banners' class='span2'>
     <% Banner.all.each do |banner| %>
-      <p class='banner'><%= image_tag banner.image, :class => "banner_image" %></p>
+      <p class='banner'><%= banner_image_url(banner) %></p>
     <% end %>
   </div>
   <div class='span8'>
@@ -38,7 +38,7 @@
     <%= render :partial => 'list_items/front_end_form' if @new_list_item %>
     <span id="sortable2">
       <% @list_items.each do |list_item| %>
-        <div class="ui-state-default draggable" id='<%= list_item.id %>'>
+        <div class="ui-state-default" id='<%= list_item.id %>'>
           <div class='hr'></div>
           <% if list_item.id != session[:open_edit] %>
             <div class='list_item li' id='li<%= list_item.id %>'>
