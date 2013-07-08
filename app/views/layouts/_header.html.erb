@@ -1,8 +1,8 @@
 <link href='http://fonts.googleapis.com/css?family=Clicker+Script' rel='stylesheet' type='text/css'>
 <div id='logo'><%= link_to 'Logo', root_path, :style => "font: bold 240% 'Clicker Script'; margin-left:30px;color: #999999;" %> </div>
 
-<ul id='ddmenu'>
-  <% if current_user %>
+<% if current_user %>
+  <ul id='ddmenu'>
     <li style='min-width:130px'>
       <a href="#" style='margin-right:20px' id='user'>Hi, <%= current_user.try(:profile).try(:fname) %>! <span id ='btn'><%= image_tag '/assets/maket/ddmenu_arrow.png' %></span></a>
       <ul>
@@ -17,6 +17,7 @@
       </ul>
     </li>
   <% else %>
+  <ul id='ddmenu' style='margin-left:45%;float:none;'>
     <!-- <li><%#= link_to 'SignIN', authentications_path, :id => 'user' %></li> -->
     <li style='min-width:130px'>
       <a href="#" id='user'>Language <span id ='btn'><%= image_tag '/assets/maket/ddmenu_arrow.png' %></span></a>

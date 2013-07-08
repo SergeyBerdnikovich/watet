@@ -41,7 +41,7 @@
         <div class="ui-state-default" id='<%= list_item.id %>'>
           <div class='hr'></div>
           <% if list_item.id != session[:open_edit] %>
-            <div class='list_item li' id='li<%= list_item.id %>'>
+            <div class="list_item li" id='li<%= list_item.id %>'>
               <%= render 'list_items/show' , list_item: list_item %>
             </div>
           <% else %>
