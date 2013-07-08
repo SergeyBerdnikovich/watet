@@ -7,6 +7,9 @@
   <div class='span9 list_item_title noFocus'>
   <%=  f.text_field :title, :value => list_item.title, :class => "noFocus", :id =>  'list_item_title'  %><br>
   <!-- <font id='list_item_name' class=''><%= list_item.user.profile.fname %></font> -->
+  <font id='list_item_гurl' class=''>
+  <%= f.text_field :url, :class => "noFocus edit_box",:placeholder =>'Type URL here' , :id => 'list_item_url' %>
+  </font>
 </div>
 <div class='span3'>
   <div class='pull-right' id='buttons'>
@@ -28,13 +31,13 @@
   <div class='row-fluid '>
     <div class='span12 '>
       <div id='list_item_des'>
-  <%= f.text_area :description, :class => "noFocus edit_box",:placeholder => t(:tell_us_more) , :id => 'list_item_des' %>
-</div>
+        <%= f.text_area :description, :class => "noFocus edit_box",:placeholder => t(:tell_us_more) , :id => 'list_item_des' %>
+      </div>
     </div>
 </div>
 
 <div class='row-fluid '>
-	  <div id='list_item_images'>
+    <div id='list_item_images'>
 <iframe class='image_iframe' id='edit_images'src='<%= list_item_image_form_path(list_item)%>'></iframe>
 
   </div>
@@ -47,7 +50,7 @@ $(document).ready(function(){
 
   $('.edit_list_item') .bind('ajax:success', function(data, status, xhr) {
     $("#close_" + status.id).click()
-	})
+  })
   $('#edit_images').load(function(){
     $("#edit_images").contents().find(".img_edit").each(function() {
       $(this).click(function(){
