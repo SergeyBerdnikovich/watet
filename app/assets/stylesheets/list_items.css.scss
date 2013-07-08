@@ -28,7 +28,7 @@ background-color: #EFEFB7;
 
 .friend_item {
   color: #CCCCCC;
-  font: 80% italic sans-serif;
+  font: italic 80% sans-serif;
 }
 
 #content {
@@ -139,6 +139,9 @@ font-size: 14px;
 margin-top: 0px;
 
 }
+#list_item_url{
+  display: none;
+}
 
 #list_item_images{
 display: none;
@@ -170,6 +173,10 @@ border: 0px solid #000000;
 background-color: #EFEFB7;
 margin-bottom: 3px;
 padding:10px 15px;
+
+#list_item_url{
+  display: none;
+}
 
 #list_item_title{
 font-size: 19px;
