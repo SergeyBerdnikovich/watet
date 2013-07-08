@@ -15,7 +15,7 @@ class StaticPagesController < ApplicationController
   # GET /static_pages/1.json
   def show
     @static_page = StaticPage.find(params[:id])
-
+    flash.clear
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @static_page }
