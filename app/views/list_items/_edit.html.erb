@@ -55,14 +55,20 @@ $(document).ready(function(){
     $("#edit_images").contents().find(".img_edit").each(function() {
       $(this).click(function(){
         var img_src = $(this).attr('href');
-        $('body').append("<div class=\'galery_div\'>\n  <span class=\'galery_image_div\'>\n<img alt=\"_qdxvjh4tdg\" class=\"galery_image\" src=\"" + img_src + "\" />\n<\/span>\n<\/div>")
-        var height = $(window).height();
-        var width = $(window).width();
-        $('.galery_image').css('max-height', height * 0.9);
-        $('.galery_image').css('max-width', width * 0.9);
+        $('body').append("<div class=\'galery_div\'>\n  <span class=\'galery_image_div\'>\n<img id='loader' src='/assets/loading.gif' alt='Loading' />\n<\/span>\n<\/div>");
+        $('.galery_image_div').append("\n<img alt=\"_qdxvjh4tdg\" class=\"galery_image\" src=\"" + img_src + "\" />");
+        $('.galery_image').hide();
+        $('.galery_image').load( function() {
+          var height = $(window).height();
+          var width = $(window).width();
+          $('.galery_image').css('max-height', height * 0.9);
+          $('.galery_image').css('max-width', width * 0.9);
+          $('#loader').hide();
+          $('.galery_image').show();
+        } );
         $('.galery_image_div').click(function(){
           $('.galery_div').remove();
-        })
+        });
       });
     });
   });

@@ -1,5 +1,19 @@
 <div class='galery_div'>
-	<span class='galery_image_div'>
-<%= image_tag @image.image.url, :class => 'galery_image' %>
-</span>
+  <span class='galery_image_div'>
+    <img id="loader" src="/assets/loading.gif" alt="Loading" />
+    <%= image_tag @image.image.url, :class => 'galery_image', :id => 'gallery_img' %>
+  </span>
 <div>
+<script type="text/javascript">
+  $(function() {
+    $('#gallery_img').hide();
+    $('#gallery_img').load( function() {
+      var height = $(window).height();
+      var width = $(window).width();
+      $('.galery_image').css('max-height', height * 0.9);
+      $('.galery_image').css('max-width', width * 0.9);
+      $('#loader').hide();
+      $('#gallery_img').show();
+    } );
+  });
+</script>
