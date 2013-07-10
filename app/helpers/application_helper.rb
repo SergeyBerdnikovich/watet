@@ -30,17 +30,19 @@ module ApplicationHelper
   end
 
   def list_item_title_url(list_item)
-    if list_item.url.present? && list_item.url =~ /^http:\/\/[a-z1-9.\/@A-Z?=]+/
+    if list_item.url.present? && list_item.url =~ /^http:\/\/[a-z0-9.\/@A-Z?=-]+/
       link_to list_item.title, list_item.url
     elsif list_item.url.present?
       link_to(list_item.title, 'http://' + list_item.url)
+    elsif list_item.title =~ /^http:\/\/[a-z0-9.\/@A-Z?=-]+/ || list_item.title =~ /^www.[a-z0-9.\/@A-Z?=-]+/
+      link_to list_item.title, list_item.title
     else
       list_item.title
     end
   end
 
   def list_item_url(list_item)
-    if list_item.url.present? && list_item.url =~ /^http:\/\/[a-z1-9.\/@A-Z?=]+/
+    if list_item.url.present? && list_item.url =~ /^http:\/\/[a-z0-9.\/@A-Z?=-]+/
       link_to list_item.url, list_item.url
     elsif list_item.url.present?
       link_to(list_item.url, 'http://' + list_item.url)
@@ -63,7 +65,7 @@ module ApplicationHelper
   end
 
   def banner_image_url(banner)
-    if banner.url.present? && banner.url =~ /^http:\/\/[a-z1-9.\/@A-Z?=]+/
+    if banner.url.present? && banner.url =~ /^http:\/\/[a-z0-9.\/@A-Z?=-]+/
       link_to image_tag(banner.image), banner.url, :class => "banner_image"
     elsif banner.url.present?
       link_to image_tag(banner.image), 'http://' + banner.url, :class => "banner_image"

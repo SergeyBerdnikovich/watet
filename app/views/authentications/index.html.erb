@@ -1,3 +1,25 @@
+<% if current_user %>
+<div id='setting_language'>
+  <br>
+  <span id='select_language'>
+    <strong>Select the language:</strong>
+  </span>
+    <ul id='ddmenu'>
+      <li style='min-width:130px'>
+        <a href="#" id='user' style='background-color:#EFEFB7;'><img src="/assets/language/<%= session[:locale] %>.png"> <span id ='btn'><%= image_tag '/assets/maket/ddmenu_arrow.png' %></span></a>
+        <ul>
+          <li id='first'><a href="<%= settings_path(:locale => :ru) %>"><img src="/assets/language/ru.png"> Язык</a></li>
+          <li><a href="<%= settings_path(:locale => :en) %>"><img src="/assets/language/en.png"> Language</a></li>
+          <li><a href="<%= settings_path(:locale => :de) %>"><img src="/assets/language/de.png"> Sprache</a></li>
+          <li><a href="<%= settings_path(:locale => :it) %>"><img src="/assets/language/it.png"> Lingua</a></li>
+          <li><a href="<%= settings_path(:locale => :es) %>"><img src="/assets/language/es.png"> Idioma</a></li>
+          <li><a href="<%= settings_path(:locale => :cn) %>"><img src="/assets/language/cn.png"> 語</a></li>
+          <li><a href="<%= settings_path(:locale => :pl) %>"><img src="/assets/language/pl.png"> Język</a></li>
+        </ul>
+      </li>
+    </ul>
+</div>
+<% end %>
 <div id='setting_authentications'>
   <% if @authentications %>
     <% unless @authentications.empty? %>
@@ -45,25 +67,3 @@
   <%#= link_to image_tag("delete_button.png"), user_delete_path(current_user), :class => 'opcy' %><%= link_to image_tag("delete_button.png"), user_path(current_user), :method => :delete, :confirm => t(:confirm_acc_deletion), :class => 'opcy' %>
   <% end %>
 </div>
-<% if current_user %>
-<div id='setting_language'>
-  <br>
-  <span id='select_language'>
-    <strong>Select the language:</strong>
-  </span>
-    <ul id='ddmenu'>
-      <li style='min-width:130px'>
-        <a href="#" id='user' style='background-color:#EFEFB7;'><img src="/assets/language/<%= session[:locale] %>.png"> <span id ='btn'><%= image_tag '/assets/maket/ddmenu_arrow.png' %></span></a>
-        <ul>
-          <li id='first'><a href="<%= settings_path(:locale => :ru) %>"><img src="/assets/language/ru.png"> Язык</a></li>
-          <li><a href="<%= settings_path(:locale => :en) %>"><img src="/assets/language/en.png"> Language</a></li>
-          <li><a href="<%= settings_path(:locale => :de) %>"><img src="/assets/language/de.png"> Sprache</a></li>
-          <li><a href="<%= settings_path(:locale => :it) %>"><img src="/assets/language/it.png"> Lingua</a></li>
-          <li><a href="<%= settings_path(:locale => :es) %>"><img src="/assets/language/es.png"> Idioma</a></li>
-          <li><a href="<%= settings_path(:locale => :cn) %>"><img src="/assets/language/cn.png"> 語</a></li>
-          <li><a href="<%= settings_path(:locale => :pl) %>"><img src="/assets/language/pl.png"> Język</a></li>
-        </ul>
-      </li>
-    </ul>
-</div>
-<% end %>

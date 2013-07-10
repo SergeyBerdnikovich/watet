@@ -7,8 +7,8 @@
   <div class='span9 list_item_title noFocus'>
   <%=  f.text_field :title, :value => list_item.title, :class => "noFocus", :id =>  'list_item_title'  %><br>
   <!-- <font id='list_item_name' class=''><%= list_item.user.profile.fname %></font> -->
-  <font id='list_item_гurl' class=''>
-  <%= f.text_field :url, :class => "noFocus edit_box",:placeholder =>'Type URL here' , :id => 'list_item_url' %>
+  <font id='list_item_url' class=''>
+  <%= f.text_field :url, :class => "noFocus edit_box",:placeholder =>'Type URL here' , :id => 'list_item_url', :size => '50' %>
   </font>
 </div>
 <div class='span3'>
