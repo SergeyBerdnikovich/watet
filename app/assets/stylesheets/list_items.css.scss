@@ -2,6 +2,33 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.ui-state-default{
+ min-height:50px;
+}
+
+.image_block_container{
+height:60px !important;
+vertical-align:top !important;
+margin: 10px 0 10px;
+}
+  .image_show {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+  .image_show a img {
+   display: block;
+    margin: 0;
+    padding: 0;
+    min-height: 60px !important;
+    min-width: 60px !important;
+  }
+
+
+
 #friends {
 margin-top: 2px;
 
@@ -106,12 +133,9 @@ margin-right:-13px
 .list_item {
 border: 0px solid #000000;
 background-color: transparent;
-margin-bottom: -10px;
-padding:10px 15px 0px 15px;
+margin-bottom: 0px;
+padding:10px 15px 10px 15px;
 
-.image_block_container{
-  margin-top: 10px;
-}
 
 
 
@@ -176,8 +200,8 @@ margin-right:-13px
 .list_item_hover {
 border: 0px solid #000000;
 background-color: #EFEFB7;
-margin-bottom: 3px;
-padding:10px 15px;
+margin-bottom: 0px;
+padding:10px 15px 10px;
 
 #list_item_url{
   display: none;
@@ -463,10 +487,10 @@ div.ui-state-default.draggable:first-child .hr {
   display: none;
 }
 .list_item {
-  height: 136px;
+  min-height: 50px;
 }
 .list_item_hover {
-  height: 113px;
+  min-height: 50px;
 }
 #list_item_title {
 white-space: pre-line;

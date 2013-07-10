@@ -50,6 +50,7 @@ module ApplicationHelper
   end
 
   def list_item_desc(list_item)
+    if list_item.description
     regexp = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/
     list_item.description.gsub(regexp).each do |result|
       if result =~ /^http:\/\/[a-z1-9.\/@A-Z?=]+/
@@ -58,6 +59,7 @@ module ApplicationHelper
         "<a href=#{'http://' + result}>#{result}</a>"
       end
     end
+  end
   end
 
   def banner_image_url(banner)
