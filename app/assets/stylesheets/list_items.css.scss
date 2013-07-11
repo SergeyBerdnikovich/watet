@@ -86,8 +86,9 @@ background-color: #EFEFB7;
   margin-bottom: 3px;
 
 }
-
-
+.ui-state-default:first-child .hr {
+  display: none;
+}
 
 .list_item_active {
 border: 0px solid #000000;
