@@ -45,10 +45,10 @@
     <%= render :partial => 'list_items/front_end_form' if @new_list_item %>
     <span id="sortable">
       <% @list_items.each do |list_item| %>
-        <div class="ui-state-default" id='<%= list_item.id %>'>
+        <div class="ui-state-default toggler" id='<%= list_item.id %>'>
           <div class='hr'></div>
           <% if list_item.id != session[:open_edit] %>
-            <div class="list_item li" id='li<%= list_item.id %>'>
+            <div class="list_item li toggler" id='li<%= list_item.id %>'>
               <%= render 'list_items/show' , list_item: list_item %>
             </div>
           <% else %>

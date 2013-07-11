@@ -21,6 +21,13 @@
   background-color: #FFFFCC;
 }
 
+.nosort{
+  cursor: default !important;
+}
+.notoggle{
+  cursor: default !important;
+}
+
 body {
   background-color: #FFFFCC;
   height: 100%;

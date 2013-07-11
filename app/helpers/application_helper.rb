@@ -31,11 +31,11 @@ module ApplicationHelper
 
   def list_item_title_url(list_item)
     if list_item.url.present? && list_item.url =~ /^http:\/\/[a-z0-9.\/@A-Z?=-]+/
-      link_to list_item.title, list_item.url
+      link_to list_item.title, list_item.url, :target => "_blank"
     elsif list_item.url.present?
-      link_to(list_item.title, 'http://' + list_item.url)
+      link_to(list_item.title, 'http://' + list_item.url, :target => "_blank")
     elsif list_item.title =~ /^http:\/\/[a-z0-9.\/@A-Z?=-]+/ || list_item.title =~ /^www.[a-z0-9.\/@A-Z?=-]+/
-      link_to list_item.title, list_item.title
+      link_to list_item.title, list_item.title, :target => "_blank"
     else
       list_item.title
     end
@@ -43,9 +43,9 @@ module ApplicationHelper
 
   def list_item_url(list_item)
     if list_item.url.present? && list_item.url =~ /^http:\/\/[a-z0-9.\/@A-Z?=-]+/
-      link_to list_item.url, list_item.url
+      link_to list_item.url, list_item.url, :target => "_blank"
     elsif list_item.url.present?
-      link_to(list_item.url, 'http://' + list_item.url)
+      link_to(list_item.url, 'http://' + list_item.url, :target => "_blank")
     else
       nil
     end

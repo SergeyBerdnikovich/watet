@@ -1,6 +1,6 @@
 <%  list_item = @list_item  if @list_item %>
 <%#  new_list_item = @new_list_item  if @new_list_item %>
-<div class='row-fluid'>
+<div class='row-fluid toggler'>
   <div class='span9 toggler'>
     <p id='list_item_title' class='toggler draggable' ><%= list_item_title_url(list_item) %></p>
     <!-- <font id='list_item_name' class='toggler'><%#= list_item.user.profile.fname %></font><br /><br /> -->
@@ -25,14 +25,18 @@
     </span>
   </div>
 </div>
-<div class='row-fluid list_item_des_container nosort'>
-  <div class='span11 nosort'>
-    <div id='list_item_des' class='nosort'>
-      <%#= list_item.description %>
+
+  <% unless list_item_desc(list_item).blank? %>
+<div class='row-fluid list_item_des_container  nosort notoggle'>
+
+  <div class='span11 nosort notoggle'>
+    <div id='list_item_des' class='nosort notoggle'>
       <%== list_item_desc(list_item) %>
     </div>
   </div>
+
 </div>
+<% end %>
 <% if list_item.images %>
   <% if list_item.images.where('image_file_name IS NOT NULL').count > 0 %>
     <div class='row-fluid image_block_container toggler'>

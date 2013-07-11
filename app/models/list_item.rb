@@ -8,7 +8,19 @@ class ListItem < ActiveRecord::Base
   before_save :add_url
 
   def add_url
-    self.url ||= self.title if self.title =~ /^http:\/\/[a-z1-9.\/@A-Z?=]+/ || self.title =~ /^www.[a-z1-9.\/@A-Z?=]+/
+    if self.title =~ /^http[s]{0,1}:\/\/[a-z1-9.\/@A-Z?=]+/ || self.title =~ /^www.[a-z1-9.\/@A-Z?=]+/
+      self.url = self.title 
+    
+    begin
+      uri = URI(self.url)
+      str = Net::HTTP.get(uri),{:open_timeout => 2, :read_timeout => 4 }
+      #raise str.inspect.to_s
+      title = str.to_s.match(/(?:<title[^>]*?>)(.*?)(?:<\/title>)/m)[1]
+      self.title  = title if title
+    rescue
+    end 
+
+    end
   end
 
   def as_json(options={})

@@ -60,10 +60,13 @@ $(document).ready(function() {
 
 
 	$('.li').click(function(e) {
-		if(e.target.className.indexOf('toggler') != -1){
+		
+		if(e.target.className.indexOf('notoggle') == -1){
 			if (drag_started == false){
 				current_class = $(this).attr('class')
+		
 				if (current_class != "list_item_active"){
+		
 					$(this).attr('class', 'list_item_active')
 				} else{
 					$(this).attr('class', 'list_item_hover')
