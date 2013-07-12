@@ -1,24 +1,20 @@
-<%  list_item = @list_item  if @list_item %>
-<%#  new_list_item = @new_list_item  if @new_list_item %>
+<% list_item = @list_item if @list_item %>
 <div class='row-fluid toggler'>
   <div class='span9 toggler'>
     <p id='list_item_title' class='toggler draggable' ><%= list_item_title_url(list_item) %></p>
-    <!-- <font id='list_item_name' class='toggler'><%#= list_item.user.profile.fname %></font><br /><br /> -->
     <font id='list_item_url' class='toggler'><%= list_item_url(list_item) %></font>
   </div>
   <div class='span3'>
     <div class='pull-right' id='buttons'>
-      <%# if @new_list_item %>
-        <%= link_to ''.html_safe + image_tag("edit.png"), edit_list_item_path(list_item), :remote => true,
-                                                                                                                                              :class => 'btn btn-link' %>
-        <%#= image_tag("geo.png") %>
-        <%= link_to ''.html_safe + image_tag("trash.png"), list_item_path(list_item), :method => :delete,
-                                                                                                                                        :data => { :confirm => t('.confirm',
-                                                                                                                                                           :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                                                                                                                                        :class => 'btn btn-link deleter',
-                                                                                                                                        :remote => true,
-                                                                                                                                        :list_item_id => list_item.id %>
-      <%# end %>
+      <%= link_to ''.html_safe + image_tag("edit.png"), edit_list_item_path(list_item), :remote => true,
+                                                                                                                                            :class => 'btn btn-link' %>
+      <%#= image_tag("geo.png") %>
+      <%= link_to ''.html_safe + image_tag("trash.png"), list_item_path(list_item), :method => :delete,
+                                                                                                                                      :data => { :confirm => t('.confirm',
+                                                                                                                                                         :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                                                                                                                                      :class => 'btn btn-link deleter',
+                                                                                                                                      :remote => true,
+                                                                                                                                      :list_item_id => list_item.id %>
     </div><br>
     <span class='pull-right toggler'>
       <font id='list_item_date' class='toggler'><%= l list_item.created_at %></font>
@@ -26,41 +22,36 @@
   </div>
 </div>
 
-  <% unless list_item_desc(list_item).blank? %>
-<div class='row-fluid list_item_des_container  nosort notoggle'>
-
-  <div class='span11 nosort notoggle'>
-    <div id='list_item_des' class='nosort notoggle'>
-      <%== list_item_desc(list_item) %>
+<% unless list_item_desc(list_item).blank? %>
+  <div class='row-fluid list_item_des_container  nosort notoggle'>
+    <div class='span11 nosort notoggle'>
+      <div id='list_item_des' class='nosort notoggle'>
+        <%== list_item_desc(list_item) %>
+      </div>
     </div>
   </div>
+<% end %>
 
-</div>
+<% if list_item.images && list_item.images.where('image_file_name IS NOT NULL').count > 0 %>
+  <div class='row-fluid image_block_container toggler'>
+    <% list_item.images.each do |image| %>
+      <% if image.image.url.index('missing.png') == nil %>
+        <div class='image_show'>
+          <%= link_to image_tag(image.image.url(:thumb)), list_item_image_path(image.list_item_id, :id=>image.id), :remote => true %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 <% end %>
-<% if list_item.images %>
-  <% if list_item.images.where('image_file_name IS NOT NULL').count > 0 %>
-    <div class='row-fluid image_block_container toggler'>
-      
-        <% list_item.images.each do |image| %>
-          <% if image.image.url.index('missing.png') == nil %>
-            <div class='image_show'>
-              <%= link_to image_tag(image.image.url(:thumb)), list_item_image_path(image.list_item_id, :id=>image.id), :remote => true %>
-            </div>
-          <% end %>
-        <% end %>
-      
-    </div>
-  <% end %>
-<% end %>
+
 <script>
-
-$('.deleter').bind('ajax:success', function() {
-  list_item_id = $(this).attr('list_item_id');
-  $('#'+list_item_id).remove();
-});
+  $('.deleter').bind('ajax:success', function() {
+    list_item_id = $(this).attr('list_item_id');
+    $('#'+list_item_id).remove();
+  });
 </script>
-<style type="text/css">
 
+<style type="text/css">
   <% unless @new_list_item %>
     #buttons {
       opacity: 0;

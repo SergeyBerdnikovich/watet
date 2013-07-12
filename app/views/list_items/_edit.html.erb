@@ -1,32 +1,29 @@
-
- <%  list_item = @list_item  if @list_item %>
-
-  <% if list_item %>
-   <%=  form_for list_item, :id => "list_item_form", :remote => true, :html => {:'data-type' => 'json', :multipart => true, :class => "notoggle"} do |f|%>
+ <% list_item = @list_item  if @list_item %>
+<% if list_item %>
+  <%=  form_for list_item, :id => "list_item_form", :remote => true, :html => {:'data-type' => 'json', :multipart => true, :class => "notoggle"} do |f| %>
   <div class='row-fluid noFocus notoggle'>
-  <div class='span9 list_item_title noFocus notoggle'> 
-  <%=  f.text_field :title, :value => list_item.title, :class => "notoggle noFocus", :id =>  'list_item_title'  %><br>
-  <!-- <font id='list_item_name' class=''><%= list_item.user.profile.fname %></font> --> 
-  <font id='list_item_url' class='notoggle'>
-  <%= f.text_field :url, :class => "notoggle noFocus edit_box",:placeholder =>'Type URL here' , :id => 'list_item_url', :size => '50' %>
-  </font>
-</div>
-<div class='span3 notoggle'>
-  <div class='pull-right notoggle' id='buttons'>
-
-  <%= image_submit_tag("save.png") %>
-
-  <%= link_to ''.html_safe + image_tag("cancel.png"), list_item_path(list_item), :remote => true,
-  :class => 'btn btn-link notoggle', :id => "close_#{list_item.id}" %>
-
-    <%= link_to ''.html_safe + image_tag("cancel.png"), edit_list_item_path(list_item), :remote => true,
-  :style => 'display:none', :id => "edit_#{list_item.id}" %>
-</div><br>
-<span class='pull-right notoggle'>
-   <font class='notoggle' id='list_item_name'><%= l list_item.created_at %></font>
-</span>
-</div>
-</div>
+    <div class='span9 list_item_title noFocus notoggle'>
+      <%=  f.text_field :title, :value => list_item.title, :class => "notoggle noFocus", :id =>  'list_item_title' %><br>
+      <!-- <font id='list_item_name' class=''><%= list_item.user.profile.fname %></font> -->
+      <font id='list_item_url' class='notoggle'>
+        <%= f.text_field :url, :class => "notoggle noFocus edit_box",:placeholder =>'Type URL here' , :id => 'list_item_url', :size => '50' %>
+      </font>
+    </div>
+    <div class='span3 notoggle'>
+      <div class='pull-right notoggle' id='buttons'>
+        <%= image_submit_tag("save.png") %>
+        <%= link_to ''.html_safe + image_tag("cancel.png"), list_item_path(list_item), :remote => true,
+                                                                                                                                          :class => 'btn btn-link notoggle',
+                                                                                                                                          :id => "close_#{list_item.id}" %>
+        <%= link_to ''.html_safe + image_tag("cancel.png"), edit_list_item_path(list_item), :remote => true,
+                                                                                                                                                  :style => 'display:none',
+                                                                                                                                                  :id => "edit_#{list_item.id}" %>
+      </div><br>
+      <span class='pull-right notoggle'>
+         <font class='notoggle' id='list_item_name'><%= l list_item.created_at %></font>
+      </span>
+    </div>
+  </div>
 
   <div class='row-fluid notoggle'>
     <div class='span12 notoggle'>
@@ -34,45 +31,41 @@
         <%= f.text_area :description, :class => "notoggle noFocus edit_box",:placeholder => t(:tell_us_more) , :id => 'list_item_des' %>
       </div>
     </div>
-</div>
-
-<div class='row-fluid notoggle'>
-    <div id='list_item_images notoggle' >
-<iframe class='image_iframe notoggle' id='edit_images'src='<%= list_item_image_form_path(list_item)%>'></iframe>
-
   </div>
-  <% end %>
-  <% end %>
-</div>
-  <script>
-$(document).ready(function(){
 
+  <div class='row-fluid notoggle'>
+    <div id='list_item_images notoggle' >
+      <iframe class='image_iframe notoggle' id='edit_images'src='<%= list_item_image_form_path(list_item)%>'></iframe>
+    </div>
+  <% end %>
+<% end %>
+  </div>
 
-  $('.edit_list_item') .bind('ajax:success', function(data, status, xhr) {
-    $("#close_" + status.id).click()
-  })
-  $('#edit_images').load(function(){
-    $("#edit_images").contents().find(".img_edit").each(function() {
-      $(this).click(function(){
-        var img_src = $(this).attr('href');
-        $('body').append("<div class=\'galery_div\'>\n  <span class=\'galery_image_div\'>\n<img id=\'loader\' src=\'/assets/loading.gif\' alt=\'Loading\' />\n<\/span>\n<\/div>");
-        $('.galery_image_div').append("\n<img style='display:none' alt=\"_qdxvjh4tdg\" class=\"galery_image\" src=\"" + img_src + "\" />");
-        //$('.galery_image').hide();
-        $('.galery_image').load( function() {
-          var height = $(window).height();
-          var width = $(window).width();
-          $('.galery_image').css('max-height', height * 0.9);
-          $('.galery_image').css('max-width', width * 0.9);
-          $('#loader').hide();
-          $('.galery_image').show();
-        } );
-        $('.galery_image_div').click(function(){
-          $('.galery_div').remove();
+<script>
+  $(document).ready(function(){
+    $('.edit_list_item') .bind('ajax:success', function(data, status, xhr) {
+      $("#close_" + status.id).click()
+    })
+    $('#edit_images').load(function(){
+      $("#edit_images").contents().find(".img_edit").each(function() {
+        $(this).click(function(){
+          var img_src = $(this).attr('href');
+          $('body').append("<div class=\'galery_div\'>\n  <span class=\'galery_image_div\'>\n<img id=\'loader\' src=\'/assets/loading.gif\' alt=\'Loading\' />\n<\/span>\n<\/div>");
+          $('.galery_image_div').append("\n<img style='display:none' alt=\"_qdxvjh4tdg\" class=\"galery_image\" src=\"" + img_src + "\" />");
+          //$('.galery_image').hide();
+          $('.galery_image').load( function() {
+            var height = $(window).height();
+            var width = $(window).width();
+            $('.galery_image').css('max-height', height * 0.9);
+            $('.galery_image').css('max-width', width * 0.9);
+            $('#loader').hide();
+            $('.galery_image').show();
+          } );
+          $('.galery_image_div').click(function(){
+            $('.galery_div').remove();
+          });
         });
       });
     });
-  });
-})
-
-
+  })
 </script>

@@ -1,17 +1,10 @@
 <%= form_for @new_list_item, :html => { :multipart => true } do |f| %>
-<div class='bordered new_item_container'>
-  <div class='new_item' style='width:100%;height:30px;'>
-    <%= f.text_field 'title', :class => "noFocus transparent_bg new_item_text", :style => 'float:left; width:calc(100% - 33px);height:20px;', :placeholder => t('whats_up') %>
-    <%= image_submit_tag("plus.png", :class => '', :style => 'margin:7px 3px 7px 0; float:right;' ) %>
+  <div class='bordered new_item_container'>
+    <div class='new_item' style='width:100%;height:30px;'>
+      <%= f.text_field 'title', :class => "noFocus transparent_bg new_item_text",
+                                             :style => 'float:left; width:calc(100% - 33px);height:20px;',
+                                             :placeholder => t('whats_up') + current_user.try(:profile).try(:fname) + "?" %>
+      <%= image_submit_tag("plus.png", :class => '', :style => 'margin:7px 3px 7px 0; float:right;' ) %>
+    </div>
   </div>
-</div>
-
-  <% if false %>
-    <%= f.submit "Add to list", :disable_with => "Please wait...", :class => "btn btn-primary", :style => "margin-bottom:10px" %><br>
-    <%= f.text_area 'description',  :placeholder => t(:tell_us_more), :class => 'tellusmore'%><br>
-      Please attach images:
-    <%= fields_for :images do |ff| %>
-      <%= ff.file_field :image %>
-    <% end %>
-  <% end %>
 <% end %>

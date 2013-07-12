@@ -1,61 +1,53 @@
+<% if @list_item.images.size != 0 %>
+  <% @list_item.images.each do |image| %>
+    <% if image.image.url.index('missing.png') == nil %>
+      <div class='image_div'>
+        <center>
+          <div class='image_edit_div'>
+            <a data-remote="true" href="<%= image.image.url %>" id='img_in_edit' class='img_edit'>
+              <%= image_tag(image.image.url(:thumb), :class => 'image_edit',:id => "image", :image_id => image.id) %>
+            </a>
+          </div>
+        </center>
+        <div class='delete_div' image_id=<%= image.id %> >
+          <nobr>Delete <%= image_tag("del.png", :class => 'del_img') %></nobr>
+        </div>
+      </div>
+      <span style='display:none'>
+        <%= button_to "del", list_item_delete_image_path(@list_item,:image_id => image.id), :method => :delete,
+                                                                                                                                                        :id => "delete_#{image.id}" ,
+                                                                                                                                                        :confirm => 'Are you sure?' ,
+                                                                                                                                                        :class => 'btn btn-link',
+                                                                                                                                                        :style => 'display:none' %>
+      </span>
+    <% end %>
+  <% end %>
+<% end %>
 
+<%= image_tag("add_photo.png", :id => 'add_photo', :style => 'width:60px;height:60px;cursor:pointer;') %>
 
-	<% if @list_item.images.size != 0 %>
-	<% @list_item.images.each do |image| %>
-		<% if image.image.url.index('missing.png') == nil %>
-		<div class='image_div'>
+<%= form_for @list_item, :url => {:action => "update_images"}, :id => "list_item_form", :html => {:'data-type' => 'json', :multipart => true} do |f| %>
+  <%= form_for @list_item,  :remote => true, :html => { :multipart => true ,:style => 'display:none'} do |ff| %>
+    <%= fields_for :images do |ff| %>
+      <%= ff.file_field :image, :style => 'display:none',:id => 'image_choose' %>
+    <% end %>
+    <%= ff.submit :id => 'submit',:style => 'display:none' %>
+  <% end %>
+<% end %>
 
-		<center>
-			<div class='image_edit_div'>
-				<%#=  image_tag(image.image.url(:thumb), :class => 'image_edit',:id => "image", :image_id => image.id) %>
-				<%#= link_to image_tag(image.image.url(:thumb), :class => 'image_edit',:id => "image", :image_id => image.id), image.image.url, :target => '_blank' %>
-				<a data-remote="true" href="<%= image.image.url %>" id='img_in_edit' class='img_edit'>
-					<%= image_tag(image.image.url(:thumb), :class => 'image_edit',:id => "image", :image_id => image.id) %>
-				</a>
-			</div>
-		</center>
-		<div class='delete_div' image_id=<%= image.id %> ><nobr>Delete <%= image_tag("del.png", :class => 'del_img') %></nobr>
-		</div>
+<script>
+  $('document').ready(function(){
+    $('#add_photo').click(function(){
+      $('#image_choose').click()
+      $('#image_choose').on("change", function(){
+        $('#submit').click();
+        $('#add_photo').attr("src", "/assets/loading.gif");
+      });
+    })
+  })
 
-
-		</div>
-				<span style='display:none'><%= button_to "del", list_item_delete_image_path(@list_item,:image_id => image.id),:method => :delete, :id => "delete_#{image.id}" ,  :confirm => 'Are you sure?' ,
-		:class => 'btn btn-link',:style => 'display:none' %></span>
-
-		<% end %>
-		<% end %>
-		<% end %>
-
-		<%= image_tag("add_photo.png", :id => 'add_photo', :style => 'width:60px;height:60px;cursor:pointer;') %>
-
-		<%= form_for @list_item, :url => {:action => "update_images"}, :id => "list_item_form", :html => {:'data-type' => 'json', :multipart => true} do |f|%>
-			<%= form_for @list_item,  :remote => true, :html => { :multipart => true ,:style => 'display:none'} do |ff| %>
-				<%= fields_for :images do |ff| %>
-					<%= ff.file_field :image, :style => 'display:none',:id => 'image_choose' %>
-				<% end %>
-				<%= ff.submit :id => 'submit',:style => 'display:none' %>
-			<% end %>
-		<% end %>
-
-
-		<script>
-
-		$('document').ready(function(){
-			$('#add_photo').click(function(){
-				$('#image_choose').click()
-				$('#image_choose').on("change", function(){
-					$('#submit').click();
-					$('#add_photo').attr("src", "/assets/loading.gif");
-				});
-			})
-		})
-
-		$('.delete_div').click(function(){
-
-			image_id = $(this).attr('image_id')
-
-			$("#delete_" + image_id).click()
-
-		})
-
-		</script>
+  $('.delete_div').click(function(){
+    image_id = $(this).attr('image_id')
+    $("#delete_" + image_id).click()
+  })
+</script>

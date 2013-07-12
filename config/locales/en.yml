@@ -7,7 +7,7 @@ en:
       default: "%d-%m-%Y %I:%M %P"
   hello: "Hello world"
   tell_us_more: "Please tell us more"
-  whats_up: "What would you like to buy or get?"
+  whats_up: "What's happening,"
   share_email: "Enter e-mail..."
   share_email_subject: "share his whish list with you"
   share_email_text: "Please follow this link to observe the list - "
@@ -21,3 +21,22 @@ en:
   main_page_header_3: "Make a gift from friend's list"
   with: "with"
   app_page_header: "Add items to your list using your phone, when shopping or from your browser when browsing!"
+  authentication:
+    add_another_service: "Add another service to add your friends and to sing in to this account with multiple services:"
+    signin_signup: "Sign in / Sign up through one of these services:"
+    del_account: "Delete your account"
+    del_account_desc: "To delete your account and all associated data press Delete below below. The data can not be restored:"
+    select_language: "Select the language:"
+    at_the_moment: "At the moment you can sign in using:"
+  application:
+    mob_app: "Mobile Application:"
+    brouser_plgn: "Browser plugin:"
+  header:
+    hi: "Hi"
+    menu:
+      language: "Language"
+      list: "List"
+      settings: "Settings"
+      cintact_us: "Contact us"
+      applications: "Applications"
+      sign_out: "Sign out"

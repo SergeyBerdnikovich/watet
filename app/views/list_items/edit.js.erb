@@ -1,10 +1,10 @@
 $('#li<%= @list_item.id %>').attr('class','list_item_edit')
 $('#li<%= @list_item.id %>').html("<%= escape_javascript(render(:partial => "edit"))%>")
 
-$(window).resize()
-	$('.edit_box').mouseenter(function(){
-$(this).attr('class', 'edit_box_hover notoggle noFocus')
-	})
-		$('.edit_box').mouseleave(function(){
-			$(this).attr('class', 'edit_box notoggle noFocus')
-		})
+$(window).resize();
+$('.edit_box').mouseenter(function(){
+  $(this).attr('class', 'edit_box_hover noFocus')
+});
+$('.edit_box').mouseleave(function(){
+  $(this).attr('class', 'edit_box noFocus')
+});

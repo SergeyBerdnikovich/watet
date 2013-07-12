@@ -15,7 +15,7 @@
       <%= render 'layouts/header' %>
     </div>
   </div>
-    <div class="row yellowbg">
+  <div class="row yellowbg">
     <div id='content' class='span12'>
       <% flash.each do |key, msg| %>
       <div class="alert">
@@ -25,12 +25,12 @@
       <% end %>
       <%= yield %>
     </div>
-</div>
-<div class="row yellowbg">
-    <div id='footer' class='span12'>
-      <%= render 'layouts/footer' %>
+  </div>
+  <div class="row yellowbg">
+      <div id='footer' class='span12'>
+        <%= render 'layouts/footer' %>
+      </div>
     </div>
   </div>
-</div>
 </body>
 </html>

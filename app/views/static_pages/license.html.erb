@@ -4,18 +4,18 @@
     <div class='row' style='padding-top:20px;'>
       <input type='hidden' name ='redirect' value="root">
       <p><br><p>
-      	<div class='span4'>
-      		<%= link_to image_tag("back.png"), destroy_user_session_path, :class => 'opcy' %>
-      	</div>
-      	<div class='span5'>
-      		<div class="control-group">
+        <div class='span4'>
+          <%= link_to image_tag("back.png"), destroy_user_session_path, :class => 'opcy' %>
+        </div>
+        <div class='span5'>
+          <div class="control-group">
             <%= f.check_box :agreed %>
             <%= f.label :agreed, "I agree", :class => 'control-label checkbox inline' %>
           </div>
         </div>
         <div class='span2'>
-      		<%= image_tag("agree.png", :id => 'agree_button', :class => 'agree_button opcy' ) %>
-      		<%= f.submit :id => "submit_button", :style => "display:none" %>
+          <%= image_tag("agree.png", :id => 'agree_button', :class => 'agree_button opcy' ) %>
+          <%= f.submit :id => "submit_button", :style => "display:none" %>
         </div>
       </p>
   <% end %>
