@@ -13,7 +13,6 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = current_user.profile
-
     @profile.update_attributes(params[:profile])
     if params['redirect'] == 'root'
       redirect_to root_path

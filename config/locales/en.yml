@@ -28,9 +28,12 @@ en:
     del_account_desc: "To delete your account and all associated data press Delete below below. The data can not be restored:"
     select_language: "Select the language:"
     at_the_moment: "At the moment you can sign in using:"
+    succes: "Authentication sucessfull"
+    signed_succes: "Signed in sucessfull"
   application:
     mob_app: "Mobile Application:"
     brouser_plgn: "Browser plugin:"
+    in_dev: "applications are under development - coming soon!"
   header:
     hi: "Hi"
     menu:
@@ -40,3 +43,11 @@ en:
       cintact_us: "Contact us"
       applications: "Applications"
       sign_out: "Sign out"
+  list_items:
+    title_blank: "title can't be blank..."
+    email_blank: "email can't be blank..."
+    updated: "List item was successfully updated."
+    sended: "list items has been sent..."
+  users:
+    friends_see: "Please, remember that all your facebook and/or google friends will see your whole list!"
+    more_friends: "To add your google/facebook friends go to settings and login with another account."
