@@ -8,7 +8,6 @@ class ListItem < ActiveRecord::Base
   before_save :add_url
 
   def add_url #add url if it were specified in title
-
     if self.title =~ /^http[s]{0,1}:\/\/[a-z1-9.\/@A-Z?=]+/ || self.title =~ /^www.[a-z1-9.\/@A-Z?=]+/
       self.url = self.title
 
@@ -26,7 +25,6 @@ class ListItem < ActiveRecord::Base
         self.title  = title if title
       rescue
       end
-
     end
   end
 

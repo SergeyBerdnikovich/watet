@@ -1,6 +1,8 @@
 class Image < ActiveRecord::Base
-	  belongs_to :list_item
+  belongs_to :list_item
   attr_accessible :list_item_id, :image
 
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "60x60>" }, :default_url => "missing.png"
+  has_attached_file :image, :styles => { :medium => "300x300>",
+                                                                  :thumb => "60x60>" },
+                                :default_url => "missing.png"
 end
