@@ -3,8 +3,8 @@ $('#li<%= @list_item.id %>').html("<%= escape_javascript(render(:partial => "edi
 
 $(window).resize();
 $('.edit_box').mouseenter(function(){
-  $(this).attr('class', 'edit_box_hover noFocus')
+  $(this).attr('class', 'edit_box_hover notoggle noFocus')
 });
 $('.edit_box').mouseleave(function(){
-  $(this).attr('class', 'edit_box noFocus')
+  $(this).attr('class', 'edit_box notoggle noFocus')
 });
