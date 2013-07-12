@@ -2,43 +2,43 @@
  <%  list_item = @list_item  if @list_item %>
 
   <% if list_item %>
-   <%=  form_for list_item, :id => "list_item_form", :remote => true, :html => {:'data-type' => 'json', :multipart => true} do |f|%>
-  <div class='row-fluid noFocus'>
-  <div class='span9 list_item_title noFocus'>
-  <%=  f.text_field :title, :value => list_item.title, :class => "noFocus", :id =>  'list_item_title'  %><br>
-  <!-- <font id='list_item_name' class=''><%= list_item.user.profile.fname %></font> -->
-  <font id='list_item_url' class=''>
-  <%= f.text_field :url, :class => "noFocus edit_box",:placeholder =>'Type URL here' , :id => 'list_item_url', :size => '50' %>
+   <%=  form_for list_item, :id => "list_item_form", :remote => true, :html => {:'data-type' => 'json', :multipart => true, :class => "notoggle"} do |f|%>
+  <div class='row-fluid noFocus notoggle'>
+  <div class='span9 list_item_title noFocus notoggle'> 
+  <%=  f.text_field :title, :value => list_item.title, :class => "notoggle noFocus", :id =>  'list_item_title'  %><br>
+  <!-- <font id='list_item_name' class=''><%= list_item.user.profile.fname %></font> --> 
+  <font id='list_item_url' class='notoggle'>
+  <%= f.text_field :url, :class => "notoggle noFocus edit_box",:placeholder =>'Type URL here' , :id => 'list_item_url', :size => '50' %>
   </font>
 </div>
-<div class='span3'>
-  <div class='pull-right' id='buttons'>
+<div class='span3 notoggle'>
+  <div class='pull-right notoggle' id='buttons'>
 
   <%= image_submit_tag("save.png") %>
 
   <%= link_to ''.html_safe + image_tag("cancel.png"), list_item_path(list_item), :remote => true,
-  :class => 'btn btn-link', :id => "close_#{list_item.id}" %>
+  :class => 'btn btn-link notoggle', :id => "close_#{list_item.id}" %>
 
     <%= link_to ''.html_safe + image_tag("cancel.png"), edit_list_item_path(list_item), :remote => true,
   :style => 'display:none', :id => "edit_#{list_item.id}" %>
 </div><br>
-<span class='pull-right'>
-   <font id='list_item_name'><%= l list_item.created_at %></font>
+<span class='pull-right notoggle'>
+   <font class='notoggle' id='list_item_name'><%= l list_item.created_at %></font>
 </span>
 </div>
 </div>
 
-  <div class='row-fluid '>
-    <div class='span12 '>
-      <div id='list_item_des'>
-        <%= f.text_area :description, :class => "noFocus edit_box",:placeholder => t(:tell_us_more) , :id => 'list_item_des' %>
+  <div class='row-fluid notoggle'>
+    <div class='span12 notoggle'>
+      <div id='list_item_des' class='notoggle'>
+        <%= f.text_area :description, :class => "notoggle noFocus edit_box",:placeholder => t(:tell_us_more) , :id => 'list_item_des' %>
       </div>
     </div>
 </div>
 
-<div class='row-fluid '>
-    <div id='list_item_images'>
-<iframe class='image_iframe' id='edit_images'src='<%= list_item_image_form_path(list_item)%>'></iframe>
+<div class='row-fluid notoggle'>
+    <div id='list_item_images notoggle' >
+<iframe class='image_iframe notoggle' id='edit_images'src='<%= list_item_image_form_path(list_item)%>'></iframe>
 
   </div>
   <% end %>

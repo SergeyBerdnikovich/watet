@@ -60,8 +60,8 @@ $(document).ready(function() {
 
 
 	$('.li').click(function(e) {
-		
-		if(e.target.className.indexOf('notoggle') == -1){
+
+		if(e.target.className.indexOf('notoggle') == -1 && e.target.className.indexOf('list_item_edit')  == -1){
 			if (drag_started == false){
 				current_class = $(this).attr('class')
 		

@@ -7,18 +7,25 @@ class ListItem < ActiveRecord::Base
   belongs_to :user
   before_save :add_url
 
-  def add_url
+  def add_url #add url if it were specified in title
+
     if self.title =~ /^http[s]{0,1}:\/\/[a-z1-9.\/@A-Z?=]+/ || self.title =~ /^www.[a-z1-9.\/@A-Z?=]+/
-      self.url = self.title 
-    
-    begin
-      uri = URI(self.url)
-      str = Net::HTTP.get(uri),{:open_timeout => 2, :read_timeout => 4 }
-      #raise str.inspect.to_s
-      title = str.to_s.match(/(?:<title[^>]*?>)(.*?)(?:<\/title>)/m)[1]
-      self.title  = title if title
-    rescue
-    end 
+      self.url = self.title
+
+      begin
+        url = URI(self.url)
+        res = Net::HTTP.start(url.host, url.port,{:open_timeout => 3000, :read_timeout => 6000 }) {|http|
+          str =  http.get(url.path)
+        }
+        url = res['location']
+        unless url.blank?
+          url = URI(url) #get
+          str = Net::HTTP.get(url),{:open_timeout => 3000, :read_timeout => 6000 }
+        end
+        title = str.to_s.match(/(?:<title[^>]*?>)(.*?)(?:<\/title>)/mi)[1]
+        self.title  = title if title
+      rescue
+      end
 
     end
   end
