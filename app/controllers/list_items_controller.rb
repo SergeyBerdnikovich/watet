@@ -3,6 +3,26 @@ class ListItemsController < ApplicationController
   # GET /list_items.json
   before_filter :check_user, :only => [:edit, :update, :destroy]
   before_filter :check_current_user, :only => [:new, :create, :send_email_with_list_items_link]
+  
+  def show
+    @list_item = ListItem.find(params[:id])
+     @user = @list_item.user
+      if @user == current_user
+      @new_list_item = ListItem.new
+      @new_list_item.images.build
+      end
+    #   redirect_to root_path and return false if @user == current_user
+
+    #   if @user
+    #     @user.list_items.blank? ? @list_items = [] : @list_items = @user.list_items.order("list_items.created_at DESC")
+    #     @friends = get_friends_for_(current_user) if user_signed_in?
+    #     @friends ||= []
+    #   else
+    #     redirect_to root_path, :notice => 'User not found...'
+    #   end
+  end
+
+
 
   def index
     if user_signed_in?

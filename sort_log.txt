@@ -864,3 +864,15 @@ nil
 {"order"=>["56", "52", "50", "48", "47", "46", "43", "41", "38", "35", "34", "33"], "controller"=>"list_items", "action"=>"sort"}
 {"order"=>["57", "56", "50", "48", "47", "46", "43", "41", "38", "35", "34", "33"], "controller"=>"list_items", "action"=>"sort"}
 {"order"=>["57", "56", "50", "48", "47", "46", "43", "41", "38", "35", "34", "33"], "controller"=>"list_items", "action"=>"sort"}
+{"order"=>["81", "78", "54", "51", "22", "23"], "controller"=>"list_items", "action"=>"sort"}
+{"order"=>["74", "73", "72", "71", "53", "52", "28", "61"], "controller"=>"list_items", "action"=>"sort"}
+{"order"=>["74", "73", "72", "71", "53", "52", "28", "61"], "controller"=>"list_items", "action"=>"sort"}
+{"order"=>["74", "73", "72", "71", "53", "52", "28", "61"], "controller"=>"list_items", "action"=>"sort"}
+{"order"=>["74", "73", "72", "71", "53", "52", "28", "61"], "controller"=>"list_items", "action"=>"sort"}
+{"order"=>["84"], "controller"=>"list_items", "action"=>"sort"}
+{"order"=>["87", "85", "86", "84"], "controller"=>"list_items", "action"=>"sort"}
+{"order"=>["1"], "controller"=>"list_items", "action"=>"sort"}
+{"order"=>["4"], "controller"=>"list_items", "action"=>"sort"}
+{"order"=>["4"], "controller"=>"list_items", "action"=>"sort"}
+{"order"=>["89", "74", "73", "72", "71", "53", "52", "28", "61"], "controller"=>"list_items", "action"=>"sort"}
+{"order"=>["90", "89", "74", "73", "72", "71", "53", "52", "28", "61"], "controller"=>"list_items", "action"=>"sort"}

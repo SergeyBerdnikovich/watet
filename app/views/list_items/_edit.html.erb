@@ -1,6 +1,6 @@
  <% list_item = @list_item  if @list_item %>
 <% if list_item %>
-  <%=  form_for list_item, :id => "list_item_form", :remote => true, :html => {:'data-type' => 'json', :multipart => true, :class => "notoggle"} do |f| %>
+  <%=  form_for list_item, :id => "list_item_form", :remote => true, :html => {:'data-type' => 'json', :multipart => true, :class => "edit_list_item notoggle"} do |f| %>
   <div class='row-fluid noFocus notoggle'>
     <div class='span9 list_item_title noFocus notoggle'>
       <%=  f.text_field :title, :value => list_item.title, :class => "notoggle noFocus", :id =>  'list_item_title' %><br>
@@ -11,13 +11,12 @@
     </div>
     <div class='span3 notoggle'>
       <div class='pull-right notoggle' id='buttons'>
-        <%= image_submit_tag("save.png") %>
-        <%= link_to ''.html_safe + image_tag("cancel.png"), list_item_path(list_item), :remote => true,
-                                                                                                                                          :class => 'btn btn-link notoggle',
-                                                                                                                                          :id => "close_#{list_item.id}" %>
-        <%= link_to ''.html_safe + image_tag("cancel.png"), edit_list_item_path(list_item), :remote => true,
-                                                                                                                                                  :style => 'display:none',
-                                                                                                                                                  :id => "edit_#{list_item.id}" %>
+        <%= image_submit_tag("save.png", :class => "notoggle") %>
+        <%= link_to ''.html_safe + image_tag("cancel.png",:class => 'btn btn-link notoggle'), list_item_path(list_item), :remote => true, 
+                       :id => "close_#{list_item.id}" %>
+      <%= link_to ''.html_safe + image_tag("cancel.png", :class => "notoggle"), edit_list_item_path(list_item), :remote => true,
+  :style => 'display:none',
+  :id => "edit_#{list_item.id}", :class => "notoggle" %>
       </div><br>
       <span class='pull-right notoggle'>
          <font class='notoggle' id='list_item_name'><%= l list_item.created_at %></font>
